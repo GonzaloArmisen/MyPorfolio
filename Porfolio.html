@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gonzalo Armisén — Diseñador Industrial · Indumentaria Deportiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black: #0a0a0a; --white: #f5f5f0; --accent: #FF4D00; --gray-mid: #888; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 3rem;
+    background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav a { color: var(--gray-mid); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: color 0.2s; }
+  nav a:hover { color: var(--white); }
+
+  .lang-switcher { display: flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.05); border: 0.5px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 0.25rem 0.4rem; }
+  .lang-btn { display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.55rem; border-radius: 14px; border: none; background: transparent; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); transition: all 0.2s; }
+  .lang-btn.active { background: rgba(255,255,255,0.1); color: var(--white); }
+  .lang-btn:hover:not(.active) { color: var(--white); }
+  .flag { font-size: 1rem; line-height: 1; }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 5rem; position: relative; overflow: hidden; }
+  .hero-bg-text { position: absolute; top: 50%; left: -2rem; transform: translateY(-50%); font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(12rem, 22vw, 22rem); line-height: 0.85; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.05); pointer-events: none; user-select: none; white-space: nowrap; }
+  .hero-slash { position: absolute; top: 0; right: 12%; width: 2px; height: 100%; background: var(--accent); transform: skewX(-8deg); opacity: 0.9; }
+  .hero-slash::after { content: ''; position: absolute; top: 0; left: 18px; width: 1px; height: 100%; background: rgba(255,77,0,0.2); }
+  .hero-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; font-weight: 400; }
+
+  /* HEADLINE MODIFICADO */
+  .hero-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3.8rem, 8.5vw, 9rem); line-height: 0.9; text-transform: uppercase; max-width: 80%; letter-spacing: -0.01em; color: var(--white); }
+  .hero-headline span { color: var(--accent); }
+
+  .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 3rem; border-top: 0.5px solid rgba(255,255,255,0.12); padding-top: 2rem; }
+  .hero-tagline { max-width: 340px; font-size: 0.95rem; line-height: 1.6; color: var(--gray-mid); }
+  .hero-scroll { display: flex; align-items: center; gap: 0.75rem; color: var(--gray-mid); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .hero-scroll-line { width: 40px; height: 1px; background: var(--accent); }
+
+  section { padding: 6rem 3rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; font-weight: 400; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 3rem; }
+
+  /* TRABAJOS (CARRUSEL) */
+  #trabajos { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.08); position: relative; }
+  .trabajos-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+  .trabajos-header .section-title { margin-bottom: 0; }
+  .carousel-controls { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
+  .carousel-btn { background: transparent; border: 0.5px solid rgba(255,255,255,0.2); color: var(--white); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; font-size: 1.2rem; }
+  .carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+  
+  .carousel-container { overflow-x: auto; scroll-behavior: smooth; display: flex; gap: 2rem; padding-bottom: 2rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .carousel-container::-webkit-scrollbar { height: 4px; }
+  .carousel-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+  .carousel-container::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  .carousel-item { min-width: 380px; width: 380px; scroll-snap-align: start; flex-shrink: 0; position: relative; }
+  .carousel-img-wrapper { width: 100%; height: 480px; overflow: hidden; background: #151515; border: 0.5px solid rgba(255,255,255,0.05); margin-bottom: 1.25rem; position: relative; }
+  .carousel-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: grayscale(20%); }
+  .carousel-item:hover .carousel-img-wrapper img { transform: scale(1.03); filter: grayscale(0%); }
+  
+  .carousel-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+  .carousel-category { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 400; }
+  .carousel-year { font-size: 0.72rem; color: rgba(255,255,255,0.3); font-family: 'Barlow Condensed', sans-serif; }
+  .carousel-item-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); }
+
+  /* EXPERIENCIA */
+  #experiencia { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.08); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .exp-col-title { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; font-weight: 500; border-bottom: 0.5px solid rgba(255,255,255,0.06); padding-bottom: 0.75rem; }
+  .exp-item { padding: 1.5rem 0; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  .exp-item:first-of-type { padding-top: 0; }
+  .exp-period { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.3rem; }
+  .exp-role { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+  .exp-company { font-size: 0.8rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 400; }
+  .exp-desc { font-size: 0.82rem; line-height: 1.6; color: var(--gray-mid); }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .exp-tag { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); border: 0.5px solid rgba(255,255,255,0.1); padding: 0.25rem 0.5rem; }
+
+  /* SECCIÓN CLIENTES CENTRADA Y LOGOS MEJORADOS */
+  .clients-strip { grid-column: 1 / -1; margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid rgba(255,255,255,0.08); text-align: center; }
+  .clients-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 2rem; }
+  .clients-list { display: flex; flex-wrap: wrap; gap: 2.5rem 3.5rem; align-items: center; justify-content: center; }
+  .client-logo-wrapper { display: block; height: px; min-width: 80px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .client-logo-wrapper img { height: 100%; width: auto; max-width: 130px; object-fit: contain; filter: grayscale(100%) brightness(0.7) opacity(0.4); transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  
+  /* Efecto de iluminación al pasar el mouse por encima del logo */
+  .client-logo-wrapper:hover img { filter: grayscale(0%) brightness(1.2) drop-shadow(0px 0px 8px rgba(255,255,255,0.25)) opacity(1); transform: scale(1.08); }
+
+  /* SKILLS */
+  #skills { background: var(--white); color: var(--black); border-top: 0.5px solid rgba(0,0,0,0.1); }
+  #skills .section-label { color: var(--accent); }
+  #skills .section-title { color: var(--black); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .skills-intro { font-size: 1.05rem; line-height: 1.7; color: #444; margin-bottom: 2.5rem; }
+  .skill-stat { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .skill-stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: var(--black); line-height: 1; }
+  .skill-stat-unit { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--accent); text-transform: uppercase; }
+  .skill-stat-label { font-size: 0.75rem; letter-spacing: 0.12em; color: #888; text-transform: uppercase; margin-left: 0.25rem; }
+  .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .skill-group-title { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+  .skill-item { margin-bottom: 1rem; }
+  .skill-item-name { font-size: 0.88rem; font-weight: 500; color: var(--black); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+  .skill-bar-track { height: 2px; background: rgba(0,0,0,0.08); position: relative; }
+  .skill-bar-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--black); }
+  .skill-bar-fill.accent { background: var(--accent); }
+  .skill-pct { font-size: 0.68rem; color: #aaa; }
+
+  /* PROCESO */
+  #proceso { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.08); }
+  .proceso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .proceso-step { padding: 2.5rem; border-right: 0.5px solid rgba(255,255,255,0.06); position: relative; }
+  .proceso-step:last-child { border-right: none; }
+  .proceso-step-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 5rem; color: rgba(255,255,255,0.04); line-height: 1; margin-bottom: 1.5rem; display: block; }
+  .proceso-step-icon { width: 44px; height: 44px; border: 0.5px solid rgba(255,77,0,0.4); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+  .proceso-step-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .proceso-step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+  .proceso-step-desc { font-size: 0.85rem; line-height: 1.65; color: var(--gray-mid); }
+  .proceso-connector { position: absolute; top: 5.5rem; right: -1px; width: 20px; height: 1px; background: var(--accent); opacity: 0.5; }
+  .proceso-step:last-child .proceso-connector { display: none; }
+
+  /* CONTACTO */
+  #contacto { background: var(--white); color: var(--black); }
+  #contacto .section-label { color: var(--accent); }
+  #contacto .section-title { color: var(--black); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-intro { font-size: 1.1rem; line-height: 1.7; color: #444; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--black); font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; padding: 1rem 0; border-top: 0.5px solid rgba(0,0,0,0.1); transition: all 0.2s; }
+  .contact-link:hover { color: var(--accent); padding-left: 0.5rem; }
+  .contact-link-arrow { margin-left: auto; color: rgba(0,0,0,0.2); transition: all 0.2s; }
+  .contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(4px); }
+  .contact-form-area { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: #888; font-weight: 400; }
+  .form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0.6rem 0; font-size: 0.95rem; font-family: 'Barlow', sans-serif; color: var(--black); transition: border-color 0.2s; outline: none; resize: none; }
+  .form-input:focus, .form-textarea:focus { border-bottom-color: var(--accent); }
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(0,0,0,0.2); }
+  .btn-send { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--black); color: var(--white); border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; align-self: flex-start; margin-top: 0.5rem; }
+  .btn-send:hover { background: var(--accent); }
+  .btn-send svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform 0.2s; }
+  .btn-send:hover svg { transform: translateX(4px); }
+
+  footer { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up, .fade-up.visible { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    nav ul { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-headline { max-width: 100%; }
+    .exp-grid, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .proceso-grid { grid-template-columns: 1fr 1fr; }
+    .skills-cols { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .carousel-item { min-width: 300px; width: 300px; }
+    .carousel-img-wrapper { height: 380px; }
+    .clients-list { gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    .hero-headline { font-size: 3rem; }
+    .proceso-grid { grid-template-columns: 1fr; }
+    .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .trabajos-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .carousel-controls { width: 100%; justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">GONZALO ARMISÉN<span>.</span></a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#trabajos" data-i18n="nav_works">Trabajos</a></li>
+      <li><a href="#experiencia" data-i18n="nav_exp">Experiencia</a></li>
+      <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+      <li><a href="#proceso" data-i18n="nav_process">Proceso</a></li>
+      <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
+    </ul>
+    <div class="lang-switcher" role="group" aria-label="Selección de idioma">
+      <button class="lang-btn active" data-lang="es" aria-pressed="true"><span class="flag">🇦🇷</span> ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false"><span class="flag">🇺🇸</span> EN</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-text" aria-hidden="true">LALO</div>
+  <div class="hero-slash" aria-hidden="true"></div>
+
+  <p class="hero-label" data-i18n="hero_label">Diseñador Industrial · Indumentaria Deportiva</p>
+
+  <!-- HEADLINE ACTUALIZADO SEGÚN LO SOLICITADO -->
+  <h1 class="hero-headline" id="hero-title">HOLA SOY <span data-i18n="hero_name_accent">LALO</span></h1>
+
+  <div class="hero-bottom">
+    <p class="hero-tagline" data-i18n="hero_tagline">
+      Diseñador Industrial oriundo de La Plata. Desde muy chico, crear era algo cotidiano para mí y logré hacer de ello mi vocación. Hoy me encuentro en la búsqueda de nuevos proyectos y desafíos donde aportar mi impronta. ¡Espero que podamos trabajar juntos!
+    </p>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span data-i18n="hero_scroll">Ver trabajo</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN TRABAJOS (CARRUSEL) -->
+<section id="trabajos">
+  <p class="section-label" data-i18n="works_label">Portfolio</p>
+  <div class="trabajos-header">
+    <h2 class="section-title" data-i18n="works_title">Proyectos<br>Destacados</h2>
+    <div class="carousel-controls">
+      <button class="carousel-btn" id="prev-btn" aria-label="Proyecto anterior">←</button>
+      <button class="carousel-btn" id="next-btn" aria-label="Siguiente proyecto">→</button>
+    </div>
+  </div>
+
+  <div class="carousel-container fade-up" id="carousel-scroll">
+    <!-- Proyecto 1 -->
+    <div class="carousel-item">
+      <div class="carousel-img-wrapper">
+        <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Trabajos\CAT - ESTRELLAS.jpg" alt="CAPSULA - LA ESTRELLA SOS VOS - TALLERES 2025" >
+      </div>
+      <div class="carousel-meta">
+        <span class="carousel-category">Teamwear / Football</span>
+        <span class="carousel-year">2025</span>
+      </div>
+      <h3 class="carousel-item-title" data-i18n="work1_title">CAPSULA - "LA ESTRELLA SOS VOS"  TALLERES DE CORDOBA</h3>
+    </div>
+
+    <!-- Proyecto 2 -->
+    <div class="carousel-item">
+      <div class="carousel-img-wrapper">
+        <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Trabajos\CAT - TIT 2026.jpg" alt="CAMISETA TITULAR TALLERES DE CORDOBA 2026">
+      </div>
+      <div class="carousel-meta">
+        <span class="carousel-category">Teamwear / Football</span>
+        <span class="carousel-year">2026</span>
+      </div>
+      <h3 class="carousel-item-title" data-i18n="work2_title"> KIT OFICIAL TALLERES DE CORDOBA 2026 CAMISETA TITULAR</h3>
+    </div>
+
+    <!-- Proyecto 3 -->
+    <div class="carousel-item">
+      <div class="carousel-img-wrapper">
+        <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Trabajos\CAT - ALT 2 2026.jpg" alt="CAMISETA ALTERNATIVA 2 TALLERES DE CORDOBA 2026">
+      </div>
+      <div class="carousel-meta">
+        <span class="carousel-category">Teamwear / Football</span>
+        <span class="carousel-year">2025</span>
+      </div>
+      <h3 class="carousel-item-title" data-i18n="work3_title">KIT OFICIAL TALLERES DE CORDOBA 2026 CAMISETA ALTERNATIVA 2</h3>
+    </div>
+
+    <!-- Proyecto 4 -->
+    <div class="carousel-item">
+      <div class="carousel-img-wrapper">
+        <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Trabajos\CANILLITA.png" alt="Packaging Identity Canillita">
+      </div>
+      <div class="carousel-meta">
+        <span class="carousel-category">Packaging / Branding</span>
+        <span class="carousel-year">2026</span>
+      </div>
+      <h3 class="carousel-item-title" data-i18n="work4_title">Packaging - Canillita Café</h3>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <p class="section-label" data-i18n="exp_label">Trayectoria</p>
+  <h2 class="section-title" data-i18n="exp_title">Experiencia<br>profesional</h2>
+
+  <div class="exp-grid fade-up">
+    <div>
+      <p class="exp-col-title" data-i18n="exp_col1">Experiencia laboral</p>
+
+      <div class="exp-item">
+        <p class="exp-period">Presente</p>
+        <p class="exp-role" data-i18n="job1_role">Product Designer</p>
+        <p class="exp-company">Le Coq Sportif Argentina</p>
+        <p class="exp-desc" data-i18n="job1_desc">Team Sport Department. A cargo del diseño para Talleres de Córdoba, Rosario Central, Los Pumas, el Comité Olímpico Argentino (COA), el Comité Paralímpico Argentino (COPAR) y la Federación Argentina de Vóley (FEVA).</p>
+        <div class="exp-tags"><span class="exp-tag">Product Design</span><span class="exp-tag">Team Sport</span><span class="exp-tag">Techpacks</span></div>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2017 — 2025</p>
+        <p class="exp-role" data-i18n="job2_role">Product Designer</p>
+        <p class="exp-company">Canterbury Argentina</p>
+        <p class="exp-desc" data-i18n="job2_desc"> Diseño y Gestión de producto para más de 25 clubes de Rugby y Hockey de Argentina y Uruguay, desarrollo de colecciones y techpacks. Diseño de estampas (sublimación, serigrafía) y bordados. Trabajo con proveedores y fabricantes. Creación de contenido visual para catálogos.</p>
+        <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Serigrafía</span><span class="exp-tag">Bordados</span><span class="exp-tag">Catálogos</span></div>
+      </div>
+    
+        <div class="exp-item">
+        <p class="exp-period">2017 — 2025</p>
+        <p class="exp-role" data-i18n="job2_role">Product Designer</p>
+        <p class="exp-company">Sur Pacifico SA</p>
+        <p class="exp-desc" data-i18n="job2_desc">Desarrollo de colecciones para licencias de marcas como Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield y Mistral. Diseño de estampas (serigrafía) y bordados. Trabajo con proveedores y fabricantes. Creación de contenido visual para catálogos.</p>
+        <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Serigrafía</span><span class="exp-tag">Bordados</span><span class="exp-tag">Catálogos</span></div>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2016 — 2022</p>
+        <p class="exp-role" data-i18n="job3_role">Diseñador de Comunicación</p>
+        <p class="exp-company">La Plata Rugby Club</p>
+        <p class="exp-desc" data-i18n="job3_desc">Generación de contenido multimedia para redes sociales, afiches y publicidad del club.</p>
+        <div class="exp-tags"><span class="exp-tag">Social Media</span><span class="exp-tag">Comunicación</span><span class="exp-tag">Multimedia</span></div>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2016, 2018 — 2020</p>
+        <p class="exp-role" data-i18n="job4_role">Ayudante de Cátedra</p>
+        <p class="exp-company">UNLP — FBA</p>
+        <p class="exp-desc" data-i18n="job4_desc">Cátedra B de Taller de Diseño Industrial I. Universidad Nacional de La Plata, Facultad de Bellas Artes.</p>
+        <div class="exp-tags"><span class="exp-tag">Docencia</span><span class="exp-tag">UNLP</span></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="exp-col-title" data-i18n="exp_col2">Formación</p>
+
+      <div class="exp-item">
+        <p class="exp-period">Mar 2013 — Feb 2018</p>
+        <p class="exp-role" data-i18n="edu1_role">Diseñador Industrial</p>
+        <p class="exp-company">UNLP — FBA · Universidad Nacional de La Plata</p>
+        <p class="exp-desc" data-i18n="edu1_desc">Grado en Diseño Industrial.</p>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">Abr 2019 — Feb 2020</p>
+        <p class="exp-role" data-i18n="edu2_role">Posgrado en Diseño de indumentaria deportiva</p>
+        <p class="exp-company">FADU — UBA · Universidad de Buenos Aires</p>
+        <p class="exp-desc" data-i18n="edu2_desc">Programa de actualización en diseño de indumentaria deportiva.</p>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2018</p>
+        <p class="exp-role" data-i18n="edu3_role">Patronaje Básico</p>
+        <p class="exp-company">UNLP — FBA · Por Irma Banchero</p>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2020</p>
+        <p class="exp-role" data-i18n="edu4_role">Diseño de Calzado</p>
+        <p class="exp-company" data-i18n="edu4_company">Workshop · Por Santiago Muñoz-Galaz</p>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2020</p>
+        <p class="exp-role" data-i18n="edu5_role">Estampado Textil</p>
+        <p class="exp-company">UTN · Online</p>
+      </div>
+
+      <div class="exp-item">
+        <p class="exp-period">2023</p>
+        <p class="exp-role" data-i18n="edu6_role">Diseño de Indumentaria</p>
+        <p class="exp-company" data-i18n="edu6_company">Municipalidad de La Plata</p>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE MARCAS COMPLETAMENTE CENTRADA Y PREPARADA PARA IMÁGENES -->
+    <div class="clients-strip">
+      <p class="clients-label" data-i18n="clients_label">Marcas con las que colaboré</p>
+      <div class="clients-list">
+        <!-- Reemplazá el 'src' de cada imágen por la ruta de tus archivos locales o URLs cuando los tengas. 
+             Por ahora te dejé unos placeholders limpios con los nombres de referencia -->             
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-01.png" alt="logos-01">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-02.png" alt="logos-02">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-03.png" alt="logos-03">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-04.png" alt="logos-04">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-05.png" alt="logos-05">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-06.png" alt="logos-06">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="C:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-07.png" alt="logos-07">
+        </a>
+        <a class="client-logo-wrapper" href="#experiencia">
+          <img src="c:\Users\Gonzalo\Desktop\Porfolio Web\Logos\logos-08.png" alt="logos-08">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label" data-i18n="skills_label">Capacidades</p>
+  <h2 class="section-title" data-i18n="skills_title">Skills<br></h2>
+
+  <div class="skills-layout">
+    <div class="fade-up">
+      <p class="skills-intro" data-i18n="skills_intro">
+        Diseñador Industrial con especialización en indumentaria deportiva. Domino el proceso completo: desde el brief hasta la ficha técnica, con foco en materiales técnicos y construcción de alto rendimiento.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem">
+        <div class="skill-stat"><span class="skill-stat-num">8+</span><div><span class="skill-stat-unit" data-i18n="stat1_unit">Años</span><p class="skill-stat-label" data-i18n="stat1_label">de experiencia</p></div></div>
+        <div class="skill-stat"><span class="skill-stat-num">8</span><div><span class="skill-stat-unit" data-i18n="stat3_unit">Marcas</span><p class="skill-stat-label" data-i18n="stat3_label">con las que trabajé</p></div></div>
+        <div class="skill-stat"><span class="skill-stat-num">2</span><div><span class="skill-stat-unit" data-i18n="stat5_unit">Idiomas</span><p class="skill-stat-label" data-i18n="stat5_label">Español · Inglés</p></div></div>
+   
+      </div>
+    </div>
+
+    <div class="skills-cols fade-up">
+      <div>
+        <p class="skill-group-title" data-i18n="skills_group1">Software</p>
+        <div class="skill-item"><div class="skill-item-name"><span>Photoshop</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Illustrator</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>CLO 3D</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Marvelous Designer</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Rhinoceros 3D</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Keyshot</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+      </div>
+      <div>
+        <p class="skill-group-title" data-i18n="skills_group2">Técnico</p>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s1">Techpacks</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s2">Patronaje</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s3">Diseño 3D / Render</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s4">Estampas / Sublimación</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s5">Dibujo técnico / CNC</span><span class="skill-pct"></span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <p class="section-label" data-i18n="process_label">Metodología</p>
+  <h2 class="section-title" data-i18n="process_title">Proceso de<br>diseño</h2>
+
+  <div class="proceso-grid fade-up">
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">01</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step1_title">Brief & Research</h3>
+      <p class="proceso-step-desc" data-i18n="step1_desc">Análisis del deporte, el usuario y la competencia. Definición de los requerimientos técnicos y funcionales clave del producto.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">02</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step2_title">Concepto & Bocetos</h3>
+      <p class="proceso-step-desc" data-i18n="step2_desc">Exploración de formas, cortes y soluciones constructivas. Definición del lenguaje visual y las decisiones de materialidad.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">03</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step3_title">Desarrollo CAD</h3>
+      <p class="proceso-step-desc" data-i18n="step3_desc">Modelado en CLO 3D / Marvelous, patronaje técnico y renders en Keyshot. Iteración sobre silueta y paneles funcionales.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">04</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step4_title">Techpack</h3>
+      <p class="proceso-step-desc" data-i18n="step4_desc">Entrega de ficha técnica completa con materiales, construcciones, avíos y especificaciones de confección para producción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label" data-i18n="contact_label">Hablemos</p>
+  <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
+
+  <div class="contact-layout">
+    <div class="fade-up">
+      <p class="contact-intro" data-i18n="contact_intro">
+        Abierto a proyectos de indumentaria deportiva, colaboraciones con marcas y consultoría técnica. Si tenés un proyecto o querés trabajar juntos, escribime.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:gonzalo.armisen@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          gonzalo.armisen@gmail.com
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/gonzaloarmisen" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          /gonzaloarmisen
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.instagram.com/g.armisenporfolio" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          @g.armisenporfolio
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:+5492216117975" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +54 9 221 611 7975
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form-area fade-up">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="nombre" data-i18n="form_name_label">Nombre</label>
+          <input class="form-input" type="text" id="nombre" data-i18n-placeholder="form_name_ph" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="tu@email.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="asunto" data-i18n="form_subject_label">Asunto</label>
+        <input class="form-input" type="text" id="asunto" data-i18n-placeholder="form_subject_ph" placeholder="¿De qué se trata el proyecto?">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="mensaje" data-i18n="form_msg_label">Mensaje</label>
+        <textarea class="form-textarea" id="mensaje" rows="5" data-i18n-placeholder="form_msg_ph" placeholder="Contame más sobre lo que tenés en mente..."></textarea>
+      </div>
+      <button class="btn-send" type="button" id="btn-send">
+        <span data-i18n="form_send">Enviar mensaje</span>
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">GONZALO ARMISÉN<span>.</span></span>
+  <span class="footer-copy" data-i18n="footer_copy">© 2025 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires</span>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    nav_works: "Trabajos", nav_exp: "Experiencia", nav_skills: "Skills", nav_process: "Proceso", nav_contact: "Contacto",
+    hero_label: "Diseñador Industrial · Indumentaria Deportiva",
+    hero_name_accent: "LALO",
+    hero_tagline: "Diseñador Industrial especializado en indumentaria deportiva. Actualmente Product Designer en Le Coq Sportif, a cargo de Talleres, Rosario Central, Los Pumas, COA, COPAR y FEVA.",
+    hero_scroll: "Ver trabajo",
+    works_label: "Portfolio", works_title: "Proyectos<br>Destacados",
+    work1_title: "Kit Oficial Los Pumas", work2_title: "Colección Rosario Central",
+    work3_title: "Kit Oficial Talleres", work4_title: "Identidad Canillita Café",
+    exp_label: "Trayectoria", exp_title: "Experiencia<br>profesional",
+    exp_col1: "Experiencia laboral", exp_col2: "Formación",
+    job1_role: "Product Designer", job1_desc: "Team Sport Department. A cargo del diseño para Talleres de Córdoba, Rosario Central, Los Pumas, el Comité Olímpico Argentino (COA), el Comité Paralímpico Argentino (COPAR) y la Federación Argentina de Vóley (FEVA).",
+    job2_role: "Freelance Designer", job2_desc: "Gestión de producto, desarrollo de colecciones y techpacks. Diseño de estampas (sublimación, serigrafía) y bordados. Trabajo con proveedores y fabricantes. Creación de contenido visual para catálogos.",
+    job3_role: "Diseñador de Comunicación", job3_desc: "Generación de contenido multimedia para redes sociales, afiches y publicidad del club.",
+    job4_role: "Ayudante de Cátedra", job4_desc: "Cátedra B de Taller de Diseño Industrial I. Universidad Nacional de La Plata, Facultad de Bellas Artes.",
+    clients_label: "Marcas con las que trabajé",
+    edu1_role: "Diseñador Industrial", edu1_desc: "Grado en Diseño Industrial con orientación en moda e indumentaria.",
+    edu2_role: "Posgrado en Sportswear", edu2_desc: "Programa de actualización en diseño de indumentaria deportiva.",
+    edu3_role: "Patronaje Básico", edu4_role: "Diseño de Calzado", edu4_company: "Workshop · Por Santiago Muñoz-Galaz",
+    edu5_role: "Estampado Textil", edu6_role: "Diseño de Indumentaria", edu6_company: "Municipalidad de La Plata",
+    skills_label: "Capacidades", skills_title: "Skills<br>técnicos",
+    skills_intro: "Diseñador Industrial con especialización en indumentaria deportiva. Domino el proceso completo: desde el brief hasta la ficha técnica, con foco en materiales técnicos y construcción de alto rendimiento.",
+    stat1_unit: "Años", stat1_label: "de experiencia", stat3_unit: "Marcas", stat3_label: "con las que trabajé",
+    stat5_unit: "Idiomas", stat5_label: "Español · Inglés", stat4_unit: "Deportes", stat4_label: "cubiertos",
+    skills_group1: "Software", skills_group2: "Técnico",
+    skill_s1: "Techpacks", skill_s2: "Patronaje", skill_s3: "Diseño 3D / Render", skill_s4: "Estampas / Sublimación", skill_s5: "Dibujo técnico / CNC",
+    process_label: "Metodología", process_title: "Proceso de<br>diseño",
+    step1_title: "Brief & Research", step1_desc: "Análisis del deporte, el usuario y la competencia. Definición de los requerimientos técnicos y funcionales clave del producto.",
+    step2_title: "Concepto & Bocetos", step2_desc: "Exploración de formas, cortes y soluciones constructivas. Definición del lenguaje visual y las decisiones de materialidad.",
+    step3_title: "Desarrollo CAD", step3_desc: "Modelado en CLO 3D / Marvelous, patronaje técnico y renders en Keyshot. Iteración sobre silueta y paneles funcionales.",
+    step4_title: "Techpack", step4_desc: "Entrega de ficha técnica completa con materiales, construcciones, avíos y especificaciones de confección para producción.",
+    contact_label: "Hablemos", contact_title: "Contacto",
+    contact_intro: "Abierto a proyectos de indumentaria deportiva, colaboraciones con marcas y consultoría técnica. Si tenés un proyecto o querés trabajar juntos, escribime.",
+    form_name_label: "Nombre", form_name_ph: "Tu nombre",
+    form_subject_label: "Asunto", form_subject_ph: "¿De qué se trata el proyecto?",
+    form_msg_label: "Mensaje", form_msg_ph: "Contame más sobre lo que tenés en mente...",
+    form_send: "Enviar mensaje",
+    footer_copy: "© 2025 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires",
+    alert_sent: "¡Gracias! Mensaje enviado."
+  },
+  en: {
+    nav_works: "Works", nav_exp: "Experience", nav_skills: "Skills", nav_process: "Process", nav_contact: "Contact",
+    hero_label: "Industrial Designer · Sportswear",
+    hero_name_accent: "LALO",
+    hero_tagline: "Industrial Designer specialized in sportswear. Currently Product Designer at Le Coq Sportif, handling Talleres, Rosario Central, Los Pumas, COA, COPAR and FEVA.",
+    hero_scroll: "See work",
+    works_label: "Portfolio", works_title: "Featured<br>Projects",
+    work1_title: "Los Pumas Official Kit", work2_title: "Rosario Central Collection",
+    work3_title: "Talleres Official Kit", work4_title: "Canillita Café Identity",
+    exp_label: "Career", exp_title: "Professional<br>experience",
+    exp_col1: "Work experience", exp_col2: "Education",
+    job1_role: "Product Designer", job1_desc: "Team Sport Department. In charge of design for Talleres de Córdoba, Rosario Central, Los Pumas, the Argentine Olympic Committee (COA), the Argentine Paralympic Committee (COPAR) and the Argentine Volleyball Federation (FEVA).",
+    job2_role: "Freelance Designer", job2_desc: "Product management, collection and techpack development. Print design (sublimation, screen printing) and embroidery. Work with suppliers and manufacturers. Visual content creation for catalogues.",
+    job3_role: "Communication Designer", job3_desc: "Multimedia content generation for social media, posters and club advertising.",
+    job4_role: "Teaching Assistant", job4_desc: "Industrial Design Workshop I, Department B. National University of La Plata, Faculty of Fine Arts.",
+    clients_label: "Brands I've worked with",
+    edu1_role: "Industrial Designer", edu1_desc: "Degree in Industrial Design with a focus on fashion and apparel.",
+    edu2_role: "Postgraduate in Sportswear", edu2_desc: "Upgrade program in sportswear design.",
+    edu3_role: "Basic Pattern Making", edu4_role: "Shoe Design", edu4_company: "Workshop · By Santiago Muñoz-Galaz",
+    edu5_role: "Textile Printing", edu6_role: "Apparel Design", edu6_company: "Municipality of La Plata",
+    skills_label: "Capabilities", skills_title: "Technical<br>skills",
+    skills_intro: "Industrial Designer specialized in sportswear. Full process mastery: from brief to tech pack, focused on technical materials and high-performance construction.",
+    stat1_unit: "Years", stat1_label: "of experience", stat3_unit: "Brands", stat3_label: "worked with",
+    stat5_unit: "Languages", stat5_label: "Spanish · English", stat4_unit: "Sports", stat4_label: "covered",
+    skills_group1: "Software", skills_group2: "Technical",
+    skill_s1: "Tech Packs", skill_s2: "Pattern Making", skill_s3: "3D Design / Render", skill_s4: "Prints / Sublimation", skill_s5: "Technical Drawing / CNC",
+    process_label: "Methodology", process_title: "Design<br>process",
+    step1_title: "Brief & Research", step1_desc: "Analysis of the sport, the user and competition. Definition of key technical and functional requirements.",
+    step2_title: "Concept & Sketches", step2_desc: "Exploration of shapes, cuts and constructive solutions. Definition of visual language and materiality decisions.",
+    step3_title: "CAD Development", step3_desc: "3D modelling in CLO / Marvelous, pattern making and Keyshot renders. Iteration on silhouette and functional panels.",
+    step4_title: "Tech Pack", step4_desc: "Delivery of a complete tech pack with materials, constructions, trims and sewing specs for production.",
+    contact_label: "Let's talk", contact_title: "Contact",
+    contact_intro: "Open to sportswear projects, brand collaborations and technical consulting. If you have a project or want to work together, reach out.",
+    form_name_label: "Name", form_name_ph: "Your name",
+    form_subject_label: "Subject", form_subject_ph: "What is the project about?",
+    form_msg_label: "Message", form_msg_ph: "Tell me more about what you have in mind...",
+    form_send: "Send message",
+    footer_copy: "© 2025 · Industrial Designer · Sportswear · Buenos Aires",
+    alert_sent: "Thanks! Message sent."
+  }
+};
+
+let currentLang = 'es';
+
+function applyLang(lang) {
+  const t = translations[lang];
+  
+  // Manejo del título del Hero con el span dinámico para mantener la estructura solicitada
+  const nameAccent = t['hero_name_accent'] || 'LALO';
+  const heroTitle = document.getElementById('hero-title');
+  if (heroTitle) {
+    heroTitle.innerHTML = `HOLA SOY <span>${nameAccent}</span>`;
+  }
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key !== 'hero_name_accent' && t[key] !== undefined) el.innerHTML = t[key];
+  });
+  
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.getAttribute('data-lang') === lang;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active);
+  });
+  
+  document.documentElement.lang = lang;
+  currentLang = lang;
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+
+document.getElementById('btn-send').addEventListener('click', () => {
+  alert(translations[currentLang].alert_sent);
+});
+
+// FUNCIONALIDAD DEL CARRUSEL
+const carousel = document.getElementById('carousel-scroll');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+if (carousel && prevBtn && nextBtn) {
+  const scrollAmount = 412;
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+}
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const t = document.querySelector(link.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
