@@ -160,11 +160,23 @@
 
   /* CLIENTES */
   .clients-strip { grid-column: 1 / -1; margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--border); text-align: center; }
-  .clients-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 2rem; }
-  .clients-list { display: flex; flex-wrap: wrap; gap: 2.5rem 3.5rem; align-items: center; justify-content: center; }
-  .client-logo-wrapper { display: flex; align-items: center; justify-content: center; min-width: 120px; }
-  .client-logo-wrapper img { height: 150px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(100%) brightness(0) opacity(0.25); transition: all 0.35s ease; }
-  .client-logo-wrapper:hover img { filter: brightness(0) saturate(100%) invert(1) sepia(1) saturate(5) hue-rotate(340deg) brightness(1) opacity(1); transform: scale(1.08); }
+  .clients-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 2.5rem; }
+  .clients-list { display: flex; flex-wrap: wrap; gap: 3rem 4rem; align-items: center; justify-content: center; }
+  .client-logo-wrapper {
+    display: flex; align-items: center; justify-content: center;
+    width: 130px; height: 60px;
+  }
+  .client-logo-wrapper img {
+    max-width: 130px; max-height: 55px;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.35);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+  .client-logo-wrapper:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.06);
+  }
 
   /* ─── SKILLS ─── */
   #skills { background: var(--black); color: var(--white); border-top: 0.5px solid rgba(255,255,255,0.06); }
