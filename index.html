@@ -162,21 +162,9 @@
   .clients-strip { grid-column: 1 / -1; margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--border); text-align: center; }
   .clients-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 2.5rem; }
   .clients-list { display: flex; flex-wrap: wrap; gap: 3rem 4rem; align-items: center; justify-content: center; }
-  .client-logo-wrapper {
-    display: flex; align-items: center; justify-content: center;
-    width: 130px; height: 60px;
-  }
-  .client-logo-wrapper img {
-    max-width: 130px; max-height: 55px;
-    width: auto; height: auto;
-    object-fit: contain;
-    filter: grayscale(100%) opacity(0.35);
-    transition: filter 0.3s ease, transform 0.3s ease;
-  }
-  .client-logo-wrapper:hover img {
-    filter: grayscale(0%) opacity(1);
-    transform: scale(1.06);
-  }
+  .client-logo-wrapper { display: flex; align-items: center; justify-content: center; }
+  .client-logo-wrapper img { height: 150px; width: auto; object-fit: contain; opacity: 0.25; transition: opacity 0.3s ease, transform 0.3s ease; }
+  .client-logo-wrapper:hover img { opacity: 1; transform: scale(1.06); }
 
   /* ─── SKILLS ─── */
   #skills { background: var(--black); color: var(--white); border-top: 0.5px solid rgba(255,255,255,0.06); }
@@ -587,14 +575,14 @@
     <div class="clients-strip">
       <p class="clients-label" data-i18n="clients_label">Marcas con las que colaboré</p>
       <div class="clients-list">
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-01.svg" alt="logo-01"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-02.svg" alt="logo-02"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-03.svg" alt="logo-03"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-04.svg" alt="logo-04"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-05.svg" alt="logo-05"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-06.svg" alt="logo-06"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-07.svg" alt="logo-07"></a>
-        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-08.svg" alt="logo-08"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-01.png" alt="logo-01"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-02.png" alt="logo-02"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-03.png" alt="logo-03"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-04.png" alt="logo-04"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-05.png" alt="logo-05"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-06.png" alt="logo-06"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-07.png" alt="logo-07"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-08.png" alt="logo-08"></a>
       </div>
     </div>
   </div>
