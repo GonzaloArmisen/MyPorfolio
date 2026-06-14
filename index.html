@@ -944,8 +944,43 @@ document.querySelectorAll('.lang-btn').forEach(btn =>
   btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')))
 );
 
-document.getElementById('btn-send').addEventListener('click', () => {
-  alert(translations[currentLang].alert_sent);
+document.getElementById('btn-send').addEventListener('click', async () => {
+  const nombre  = document.getElementById('nombre').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const asunto  = document.getElementById('asunto').value.trim();
+  const mensaje = document.getElementById('mensaje').value.trim();
+
+  if (!nombre || !email || !mensaje) {
+    alert(currentLang === 'es' ? 'Por favor completá nombre, email y mensaje.' : 'Please fill in name, email and message.');
+    return;
+  }
+
+  const btn = document.getElementById('btn-send');
+  btn.disabled = true;
+  btn.querySelector('span').textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
+
+  try {
+    const res = await fetch('https://formspree.io/f/xgvkwbzn', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: nombre, email, subject: asunto, message: mensaje })
+    });
+
+    if (res.ok) {
+      alert(translations[currentLang].alert_sent);
+      document.getElementById('nombre').value  = '';
+      document.getElementById('email').value   = '';
+      document.getElementById('asunto').value  = '';
+      document.getElementById('mensaje').value = '';
+    } else {
+      alert(currentLang === 'es' ? 'Hubo un error al enviar. Intentá de nuevo.' : 'There was an error. Please try again.');
+    }
+  } catch (err) {
+    alert(currentLang === 'es' ? 'Sin conexión. Revisá tu internet e intentá de nuevo.' : 'No connection. Check your internet and try again.');
+  } finally {
+    btn.disabled = false;
+    btn.querySelector('span').textContent = translations[currentLang].form_send;
+  }
 });
 
 // ── MODAL DE PROYECTO ──
