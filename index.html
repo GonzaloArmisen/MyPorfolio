@@ -257,17 +257,7 @@
   .contact-link:hover { color: var(--accent); padding-left: 0.5rem; }
   .contact-link-arrow { margin-left: auto; color: rgba(0,0,0,0.2); transition: all 0.2s; }
   .contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(4px); }
-  .contact-form-area { display: flex; flex-direction: column; gap: 1.25rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-mid); font-weight: 400; }
-  .form-input, .form-textarea { background: transparent; border: none; border-bottom: 1px solid rgba(0,0,0,0.15); padding: 0.6rem 0; font-size: 0.95rem; font-family: 'Barlow', sans-serif; color: var(--black); transition: border-color 0.2s; outline: none; resize: none; }
-  .form-input:focus, .form-textarea:focus { border-bottom-color: var(--accent); }
-  .form-input::placeholder, .form-textarea::placeholder { color: rgba(0,0,0,0.2); }
-  .btn-send { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--black); color: var(--white); border: none; padding: 1rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; align-self: flex-start; margin-top: 0.5rem; }
-  .btn-send:hover { background: var(--accent); }
-  .btn-send svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform 0.2s; }
-  .btn-send:hover svg { transform: translateX(4px); }
+
 
   /* ─── FOOTER ─── */
   footer { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
@@ -279,6 +269,34 @@
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) { .fade-up, .fade-up.visible { opacity: 1; transform: none; } }
+
+  /* ─── HAMBURGUESA MÓVIL ─── */
+  .hamburger-btn {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: transparent; border: 0.5px solid var(--border); padding: 0.5rem 0.6rem;
+    cursor: pointer; width: 38px; height: 38px; align-items: center;
+  }
+  .hamburger-btn span { display: block; width: 18px; height: 1.5px; background: var(--black); transition: all 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200;
+    background: rgba(242,241,238,0.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-close {
+    position: absolute; top: 1.4rem; right: 1.5rem;
+    background: transparent; border: 0.5px solid var(--border);
+    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1rem; color: var(--black); transition: all 0.2s;
+  }
+  .mobile-menu-close:hover { border-color: var(--accent); color: var(--accent); }
+  .mobile-menu a {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 2rem;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--black);
+    text-decoration: none; padding: 0.5rem 2rem; transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-menu-lang { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
@@ -297,6 +315,7 @@
   }
   @media (max-width: 600px) {
     nav ul { display: none; }
+    .hamburger-btn { display: flex; }
     .proceso-grid { grid-template-columns: 1fr; }
     .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
     .trabajos-grid { grid-template-columns: 1fr; }
@@ -321,9 +340,28 @@
     <div class="lang-switcher" role="group" aria-label="Selección de idioma">
       <button class="lang-btn active" data-lang="es" aria-pressed="true"><span class="flag">🇦🇷</span> ES</button>
       <button class="lang-btn" data-lang="en" aria-pressed="false"><span class="flag">🇺🇸</span> EN</button>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <a href="#trabajos" data-i18n="nav_works">Trabajos</a>
+  <a href="#experiencia" data-i18n="nav_exp">Experiencia</a>
+  <a href="#skills" data-i18n="nav_skills">Skills</a>
+  <a href="#proceso" data-i18n="nav_process">Proceso</a>
+  <a href="#aburro" data-i18n="nav_aburro">Me aburro</a>
+  <a href="#conoceme" data-i18n="nav_conoceme">Conoceme</a>
+  <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+  <div class="mobile-menu-lang">
+    <button class="lang-btn active" data-lang="es" aria-pressed="true"><span class="flag">🇦🇷</span> ES</button>
+    <button class="lang-btn" data-lang="en" aria-pressed="false"><span class="flag">🇺🇸</span> EN</button>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -522,14 +560,14 @@
         <p class="exp-period">2017 — 2025</p>
         <p class="exp-role">Product Designer</p>
         <p class="exp-company">Canterbury Argentina</p>
-        <p class="exp-desc">Diseño y Gestión de producto para más de 25 clubes de Rugby y Hockey de Argentina y Uruguay, desarrollo de colecciones y techpacks. Diseño de estampas (sublimación, serigrafía) y bordados.</p>
+        <p class="exp-desc" data-i18n="job2_desc">Diseño y Gestión de producto para más de 25 clubes de Rugby y Hockey de Argentina y Uruguay, desarrollo de colecciones y techpacks. Diseño de estampas (sublimación, serigrafía) y bordados.</p>
         <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Serigrafía</span><span class="exp-tag">Bordados</span></div>
       </div>
       <div class="exp-item">
         <p class="exp-period">2017 — 2025</p>
         <p class="exp-role">Product Designer</p>
         <p class="exp-company">Sur Pacífico SA</p>
-        <p class="exp-desc">Desarrollo de colecciones para licencias Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield y Mistral. Estampas y bordados. Trabajo con proveedores y fabricantes.</p>
+        <p class="exp-desc" data-i18n="job5_desc">Desarrollo de colecciones para licencias Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield y Mistral. Estampas y bordados. Trabajo con proveedores y fabricantes.</p>
         <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Catálogos</span></div>
       </div>
       <div class="exp-item">
@@ -782,7 +820,7 @@
 <section id="contacto">
   <p class="section-label" data-i18n="contact_label">Hablemos</p>
   <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
-  <div class="contact-layout">
+  <div class="contact-layout" style="grid-template-columns:1fr;max-width:600px">
     <div class="fade-up">
       <p class="contact-intro" data-i18n="contact_intro">Abierto a proyectos de indumentaria deportiva, colaboraciones con marcas y consultoría técnica. Si tenés un proyecto o querés trabajar juntos, escribime.</p>
       <div class="contact-links">
@@ -804,30 +842,7 @@
         </a>
       </div>
     </div>
-    <div class="contact-form-area fade-up">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="nombre" data-i18n="form_name_label">Nombre</label>
-          <input class="form-input" type="text" id="nombre" data-i18n-placeholder="form_name_ph" placeholder="Tu nombre">
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">Email</label>
-          <input class="form-input" type="email" id="email" placeholder="tu@email.com">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="asunto" data-i18n="form_subject_label">Asunto</label>
-        <input class="form-input" type="text" id="asunto" data-i18n-placeholder="form_subject_ph" placeholder="¿De qué se trata el proyecto?">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="mensaje" data-i18n="form_msg_label">Mensaje</label>
-        <textarea class="form-textarea" id="mensaje" rows="5" data-i18n-placeholder="form_msg_ph" placeholder="Contame más sobre lo que tenés en mente..."></textarea>
-      </div>
-      <button class="btn-send" type="button" id="btn-send">
-        <span data-i18n="form_send">Enviar mensaje</span>
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-    </div>
+
   </div>
 </section>
 
@@ -893,7 +908,9 @@ const translations = {
     exp_col1: "Work experience", exp_col2: "Education",
     job1_role: "Product Designer",
     job1_desc: "Team Sport Department. In charge of design for Talleres de Córdoba, Rosario Central, Los Pumas, the Argentine Olympic Committee (COA), the Argentine Paralympic Committee (COPAR) and the Argentine Volleyball Federation (FEVA).",
+    job2_desc: "Product design and management for over 25 Rugby and Hockey clubs across Argentina and Uruguay. Collection development and tech packs. Print design including sublimation, screen printing, and embroidery.",
     job3_role: "Communication Designer", job3_desc: "Multimedia content generation for social media, posters and club advertising.",
+    job5_desc: "Collection development for licensed brands including Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield and Mistral. Print and embroidery design. Collaboration with suppliers and manufacturers.",
     job4_role: "Teaching Assistant", job4_desc: "Industrial Design Workshop I, Department B. National University of La Plata, Faculty of Fine Arts.",
     clients_label: "Brands I've worked with",
     edu1_role: "Industrial Designer", edu1_desc: "Degree in Industrial Design.",
@@ -954,21 +971,7 @@ document.querySelectorAll('.lang-btn').forEach(btn =>
   btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')))
 );
 
-document.getElementById('btn-send').addEventListener('click', () => {
-  const nombre  = document.getElementById('nombre').value.trim();
-  const email   = document.getElementById('email').value.trim();
-  const asunto  = document.getElementById('asunto').value.trim();
-  const mensaje = document.getElementById('mensaje').value.trim();
 
-  if (!nombre || !email || !mensaje) {
-    alert(currentLang === 'es' ? 'Por favor completá nombre, email y mensaje.' : 'Please fill in name, email and message.');
-    return;
-  }
-
-  const subject = encodeURIComponent((asunto || 'Contacto desde portfolio') + ' — de ' + nombre);
-  const body    = encodeURIComponent('Nombre: ' + nombre + '\nEmail: ' + email + '\n\n' + mensaje);
-  window.location.href = 'mailto:gonzalo.armisen@gmail.com?subject=' + subject + '&body=' + body;
-});
 
 // ── MODAL DE PROYECTO ──
 const modal    = document.getElementById('project-modal');
@@ -1080,6 +1083,20 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── MENÚ HAMBURGUESA ──
+const hamburgerBtn   = document.getElementById('hamburger-btn');
+const mobileMenu     = document.getElementById('mobile-menu');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+function openMobileMenu()  { mobileMenu.classList.add('open');  document.body.style.overflow = 'hidden'; }
+function closeMobileMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+hamburgerBtn.addEventListener('click', openMobileMenu);
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', () => closeMobileMenu());
+});
 
 // ── SMOOTH SCROLL LINKS ──
 document.querySelectorAll('a[href^="#"]').forEach(link => {
