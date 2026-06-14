@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gonzalo Armisén — Diseñador Industrial · Indumentaria Deportiva</title>
+<!-- Open Graph / WhatsApp / redes sociales -->
+<meta property="og:type"         content="website">
+<meta property="og:url"          content="https://gonzaloarmisen.github.io/MyPorfolio/">
+<meta property="og:title"        content="Gonzalo Armisen - Disenador Industrial - Indumentaria Deportiva">
+<meta property="og:description"  content="Product Designer en Le Coq Sportif. Diseno de indumentaria deportiva para Talleres, Los Pumas, COA y mas.">
+<meta property="og:image"        content="https://gonzaloarmisen.github.io/MyPorfolio/Logos/Background.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card"        content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -867,7 +877,7 @@ const translations = {
     form_subject_label: "Asunto", form_subject_ph: "¿De qué se trata el proyecto?",
     form_msg_label: "Mensaje", form_msg_ph: "Contame más sobre lo que tenés en mente...",
     form_send: "Enviar mensaje",
-    footer_copy: "© 2025 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires",
+    footer_copy: "© 2026 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires",
     alert_sent: "¡Gracias! Mensaje enviado."
   },
   en: {
@@ -909,7 +919,7 @@ const translations = {
     form_subject_label: "Subject", form_subject_ph: "What is the project about?",
     form_msg_label: "Message", form_msg_ph: "Tell me more about what you have in mind...",
     form_send: "Send message",
-    footer_copy: "© 2025 · Industrial Designer · Sportswear · Buenos Aires",
+    footer_copy: "© 2026 · Industrial Designer · Sportswear · Buenos Aires",
     alert_sent: "Thanks! Message sent."
   }
 };
@@ -944,7 +954,7 @@ document.querySelectorAll('.lang-btn').forEach(btn =>
   btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')))
 );
 
-document.getElementById('btn-send').addEventListener('click', async () => {
+document.getElementById('btn-send').addEventListener('click', () => {
   const nombre  = document.getElementById('nombre').value.trim();
   const email   = document.getElementById('email').value.trim();
   const asunto  = document.getElementById('asunto').value.trim();
@@ -955,32 +965,9 @@ document.getElementById('btn-send').addEventListener('click', async () => {
     return;
   }
 
-  const btn = document.getElementById('btn-send');
-  btn.disabled = true;
-  btn.querySelector('span').textContent = currentLang === 'es' ? 'Enviando...' : 'Sending...';
-
-  try {
-    const res = await fetch('https://formspree.io/f/xgvkwbzn', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name: nombre, email, subject: asunto, message: mensaje })
-    });
-
-    if (res.ok) {
-      alert(translations[currentLang].alert_sent);
-      document.getElementById('nombre').value  = '';
-      document.getElementById('email').value   = '';
-      document.getElementById('asunto').value  = '';
-      document.getElementById('mensaje').value = '';
-    } else {
-      alert(currentLang === 'es' ? 'Hubo un error al enviar. Intentá de nuevo.' : 'There was an error. Please try again.');
-    }
-  } catch (err) {
-    alert(currentLang === 'es' ? 'Sin conexión. Revisá tu internet e intentá de nuevo.' : 'No connection. Check your internet and try again.');
-  } finally {
-    btn.disabled = false;
-    btn.querySelector('span').textContent = translations[currentLang].form_send;
-  }
+  const subject = encodeURIComponent((asunto || 'Contacto desde portfolio') + ' — de ' + nombre);
+  const body    = encodeURIComponent('Nombre: ' + nombre + '\nEmail: ' + email + '\n\n' + mensaje);
+  window.location.href = 'mailto:gonzalo.armisen@gmail.com?subject=' + subject + '&body=' + body;
 });
 
 // ── MODAL DE PROYECTO ──
