@@ -392,8 +392,10 @@
   <div class="trabajos-grid fade-up">
 
     <!-- ══ TARJETA 1 ══ 
-         data-modal-images: array JSON de rutas de imágenes
-         data-modal-videos: array JSON de URLs de YouTube embed
+         data-modal-images: array JSON de rutas de imágenes (se muestran primero)
+         data-modal-videos: array JSON de URLs embed de YouTube/MP4 (se muestran después)
+         data-modal-media:  array JSON mixto con orden personalizado → [{"type":"image","src":"..."}, {"type":"video","src":"..."}]
+                            Si usás data-modal-media, los otros dos atributos se ignoran.
          data-modal-desc: descripción del proyecto / tu rol
     -->
     <div class="work-card"
@@ -791,12 +793,8 @@
          Para mostrar tu foto: eliminá el div .conoceme-avatar-placeholder,
          quitá style="display:none" del .conoceme-avatar y poné tu ruta en src="" -->
     <div class="conoceme-avatar-col">
-      <div class="conoceme-avatar-placeholder" id="conoceme-placeholder">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        <span>Tu foto<br>aquí</span>
-      </div>
-      <div class="conoceme-avatar" id="conoceme-photo" >
-        <img src="Logos/Profile photo.png" alt="Gonzalo Armisén" id="conoceme-photo-src">
+      <div class="conoceme-avatar" id="conoceme-photo">
+        <img src="Profile photo" alt="Gonzalo Armisén" id="conoceme-photo-src">
       </div>
     </div>
 
@@ -979,51 +977,58 @@ const mcPrev   = document.getElementById('mc-prev');
 const mcNext   = document.getElementById('mc-next');
 let currentCarousel = null;
 
-function buildCarousel(images, videos, title) {
+function addImageSlide(container, src, title) {
+  const slide = document.createElement('div');
+  slide.className = 'modal-carousel-slide is-img';
+  const wrap = document.createElement('div');
+  wrap.className = 'modal-img-item';
+  const img = document.createElement('img');
+  img.src = src; img.alt = title; img.loading = 'lazy';
+  wrap.addEventListener('click', (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const ox = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const oy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    wrap.style.setProperty('--ox', ox);
+    wrap.style.setProperty('--oy', oy);
+    wrap.classList.toggle('zoomed');
+  });
+  wrap.appendChild(img); slide.appendChild(wrap); container.appendChild(slide);
+}
+
+function addVideoSlide(container, src) {
+  const slide = document.createElement('div');
+  slide.className = 'modal-carousel-slide is-vid';
+  const wrap = document.createElement('div');
+  wrap.className = 'modal-vid-item';
+  if (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov')) {
+    const video = document.createElement('video');
+    video.src = src; video.controls = true; video.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    wrap.appendChild(video);
+  } else {
+    const iframe = document.createElement('iframe');
+    iframe.src = src; iframe.allowFullscreen = true;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    wrap.appendChild(iframe);
+  }
+  slide.appendChild(wrap); container.appendChild(slide);
+}
+
+function buildCarousel(images, videos, title, mediaList) {
   const container = document.getElementById('modal-carousel');
   container.innerHTML = '';
   currentCarousel = container;
 
-  images.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'modal-carousel-slide is-img';
-
-    const wrap = document.createElement('div');
-    wrap.className = 'modal-img-item';
-
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = title;
-    img.loading = 'lazy';
-
-    // ZOOM al hacer click
-    wrap.addEventListener('click', (e) => {
-      const rect = wrap.getBoundingClientRect();
-      const ox = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
-      const oy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
-      wrap.style.setProperty('--ox', ox);
-      wrap.style.setProperty('--oy', oy);
-      wrap.classList.toggle('zoomed');
+  // Formato mixto: data-modal-media tiene prioridad
+  if (mediaList && mediaList.length) {
+    mediaList.forEach(item => {
+      if (item.type === 'image') addImageSlide(container, item.src, title);
+      else if (item.type === 'video') addVideoSlide(container, item.src);
     });
-
-    wrap.appendChild(img);
-    slide.appendChild(wrap);
-    container.appendChild(slide);
-  });
-
-  videos.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'modal-carousel-slide is-vid';
-    const wrap = document.createElement('div');
-    wrap.className = 'modal-vid-item';
-    const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.allowFullscreen = true;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    wrap.appendChild(iframe);
-    slide.appendChild(wrap);
-    container.appendChild(slide);
-  });
+    return;
+  }
+  // Formato clásico: imágenes primero, videos después
+  images.forEach(src => addImageSlide(container, src, title));
+  videos.forEach(src => addVideoSlide(container, src));
 }
 
 function openModal(card) {
@@ -1031,16 +1036,17 @@ function openModal(card) {
   const category = card.getAttribute('data-modal-category') || '';
   const year     = card.getAttribute('data-modal-year') || '';
   const desc     = card.getAttribute('data-modal-desc') || '';
-  let images = [], videos = [];
-  try { images = JSON.parse(card.getAttribute('data-modal-images') || '[]'); } catch(e){}
-  try { videos = JSON.parse(card.getAttribute('data-modal-videos') || '[]'); } catch(e){}
+  let images = [], videos = [], mediaList = [];
+  try { images    = JSON.parse(card.getAttribute('data-modal-images') || '[]'); } catch(e){}
+  try { videos    = JSON.parse(card.getAttribute('data-modal-videos') || '[]'); } catch(e){}
+  try { mediaList = JSON.parse(card.getAttribute('data-modal-media')  || '[]'); } catch(e){}
 
-  document.getElementById('modal-cat').textContent      = category;
-  document.getElementById('modal-year').textContent     = year;
+  document.getElementById('modal-cat').textContent        = category;
+  document.getElementById('modal-year').textContent       = year;
   document.getElementById('modal-title-text').textContent = title;
-  document.getElementById('modal-desc').textContent     = desc;
+  document.getElementById('modal-desc').textContent       = desc;
 
-  buildCarousel(images, videos, title);
+  buildCarousel(images, videos, title, mediaList);
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
