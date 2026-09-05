@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gonzalo Armisén — Diseñador Industrial · Indumentaria Deportiva</title>
+<!-- Open Graph / WhatsApp / redes sociales -->
+<meta property="og:type"         content="website">
+<meta property="og:url"          content="https://gonzaloarmisen.github.io/MyPorfolio/">
+<meta property="og:title"        content="Gonzalo Armisen - Disenador Industrial - Indumentaria Deportiva">
+<meta property="og:description"  content="Product Designer en Le Coq Sportif. Diseno de indumentaria deportiva para Talleres, Los Pumas, COA y mas.">
+<meta property="og:image"        content="https://gonzaloarmisen.github.io/MyPorfolio/Logos/Background.png">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card"        content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ─── PALETA CLARA ─── */
+  :root {
+    --bg:       #f2f1ee;   /* fondo principal: blanco cálido */
+    --surface:  #ebebeb;   /* superficies alternadas */
+    --black:    #111111;   /* texto principal */
+    --white:    #f2f1ee;
+    --accent:   #FF4D00;
+    --gray-mid: #777;
+    --border:   rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--black); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 3rem;
+    background: rgba(242,241,238,0.9); backdrop-filter: blur(14px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+  .nav-logo span { color: var(--accent); }
+  .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+  nav ul { display: flex; gap: 2.5rem; list-style: none; }
+  nav a { color: var(--gray-mid); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 400; transition: color 0.2s; }
+  nav a:hover { color: var(--black); }
+
+  .lang-switcher { display: flex; align-items: center; gap: 0.4rem; background: rgba(0,0,0,0.04); border: 0.5px solid var(--border); border-radius: 20px; padding: 0.25rem 0.4rem; }
+  .lang-btn { display: flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.55rem; border-radius: 14px; border: none; background: transparent; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); transition: all 0.2s; }
+  .lang-btn.active { background: rgba(0,0,0,0.08); color: var(--black); }
+  .lang-btn:hover:not(.active) { color: var(--black); }
+  .flag { font-size: 1rem; line-height: 1; }
+
+  /* ─── HERO ─── */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 5rem; position: relative; overflow: hidden; background: var(--bg); }
+  /* Imagen de fondo full-bleed */
+  .hero-bg-img { position: absolute; inset: 0; background-size: cover; background-position: center top; background-repeat: no-repeat; }
+  .hero-bg-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(242,241,238,0.97) 0%, rgba(242,241,238,0.55) 45%, rgba(242,241,238,0.1) 100%); }
+  /* Placeholder cuando no hay imagen */
+  .hero-bg-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; border: 2px dashed rgba(0,0,0,0.08); pointer-events: none; }
+  .hero-bg-placeholder svg { width: 40px; height: 40px; stroke: rgba(0,0,0,0.15); fill: none; stroke-width: 1; }
+  .hero-bg-placeholder span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.18); }
+  .hero > *:not(.hero-bg-img):not(.hero-bg-placeholder) { position: relative; z-index: 2; }
+
+  .hero-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; font-weight: 400; }
+  .hero-headline { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(3.8rem, 8.5vw, 9rem); line-height: 0.9; text-transform: uppercase; max-width: 65%; letter-spacing: -0.01em; color: var(--black); }
+  .hero-headline span { color: var(--accent); }
+  .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 3rem; border-top: 0.5px solid rgba(0,0,0,0.12); padding-top: 2rem; }
+  .hero-tagline { max-width: 380px; font-size: 0.95rem; line-height: 1.6; color: #555; }
+  .hero-scroll { display: flex; align-items: center; gap: 0.75rem; color: var(--gray-mid); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
+  .hero-scroll-line { width: 40px; height: 1px; background: var(--accent); }
+  @media (max-width: 600px) { .hero-headline { max-width: 100%; font-size: 3rem; } }
+
+  /* ─── SECCIONES ─── */
+  section { padding: 6rem 3rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; font-weight: 400; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 0.9; text-transform: uppercase; margin-bottom: 3rem; color: var(--black); }
+
+  /* ─── TRABAJOS: GRILLA DE TARJETAS ─── */
+  #trabajos { background: var(--bg); border-top: 0.5px solid var(--border); }
+  .trabajos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+
+  .work-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-3px); }
+
+  .work-card-thumb { width: 100%; aspect-ratio: 4/3; overflow: hidden; background: #ddd; position: relative; }
+  .work-card-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.4s ease; filter: grayscale(15%); }
+  .work-card:hover .work-card-thumb img { transform: scale(1.04); filter: grayscale(0%); }
+
+  /* Número de índice en esquina */
+  .work-card-index { position: absolute; top: 1rem; left: 1rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; background: rgba(242,241,238,0.85); padding: 0.2rem 0.45rem; }
+
+  .work-card-info { padding: 1.25rem 1.5rem 1.5rem; border-top: 0.5px solid var(--border); }
+  .work-card-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+  .work-card-cat { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 400; }
+  .work-card-year { font-size: 0.68rem; color: var(--gray-mid); font-family: 'Barlow Condensed', sans-serif; }
+  .work-card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.25rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--black); line-height: 1.1; margin-bottom: 0.6rem; }
+  .work-card-cta { display: flex; align-items: center; gap: 0.4rem; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); opacity: 0.7; transition: opacity 0.2s; margin-top: 0.75rem; }
+  .work-card:hover .work-card-cta { opacity: 1; }
+  .work-card-cta svg { width: 10px; height: 10px; }
+
+  /* ─── MODAL DE PROYECTO ─── */
+  .modal-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal-box { background: var(--bg); border: 0.5px solid var(--border); max-width: 960px; width: 100%; max-height: 92vh; overflow-y: auto; position: relative; transform: translateY(24px); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+  .modal-overlay.open .modal-box { transform: translateY(0); }
+  .modal-box::-webkit-scrollbar { width: 3px; }
+  .modal-box::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  /* Header del modal */
+  .modal-header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .modal-header-left { flex: 1; min-width: 0; }
+  .modal-header-meta { display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.3rem; }
+  .modal-category { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 400; }
+  .modal-year-tag { font-size: 0.65rem; color: var(--gray-mid); font-family: 'Barlow Condensed', sans-serif; }
+  .modal-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(1.4rem, 3vw, 2.2rem); text-transform: uppercase; line-height: 1; color: var(--black); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .modal-close-btn { background: transparent; border: 0.5px solid var(--border); color: var(--black); width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: all 0.2s; flex-shrink: 0; }
+  .modal-close-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Body del modal */
+  .modal-body { padding: 2rem; display: flex; flex-direction: column; gap: 2rem; }
+  .modal-desc { font-size: 0.95rem; line-height: 1.8; color: #555; max-width: 680px; white-space: pre-line; }
+  .modal-meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.25rem; }
+  .modal-role { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .modal-tag { font-size: 0.62rem; letter-spacing: 0.13em; text-transform: uppercase; border: 0.5px solid var(--border); padding: 0.25rem 0.6rem; color: var(--gray-mid); font-family: "Barlow Condensed", sans-serif; }
+
+  /* CARRUSEL interno del modal */
+  .modal-carousel-wrap { position: relative; }
+  .modal-carousel { display: flex; gap: 1rem; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; }
+  .modal-carousel::-webkit-scrollbar { height: 3px; }
+  .modal-carousel::-webkit-scrollbar-thumb { background: var(--accent); }
+  .modal-carousel-slide { flex-shrink: 0; scroll-snap-align: start; }
+  /* Imágenes: ancho fijo amplio */
+  .modal-carousel-slide.is-img { width: 560px; max-width: 85vw; }
+  /* Videos: ancho 16/9 */
+  .modal-carousel-slide.is-vid { width: 560px; max-width: 85vw; aspect-ratio: 16/9; }
+
+  .modal-img-item { width: 100%; border: 0.5px solid var(--border); background: #ddd; overflow: hidden; cursor: zoom-in; position: relative; }
+  .modal-img-item img { width: 100%; display: block; transition: transform 0.3s ease; }
+  .modal-img-item.zoomed { cursor: zoom-out; }
+  .modal-img-item.zoomed img { transform: scale(2); transform-origin: var(--ox, 50%) var(--oy, 50%); }
+  .modal-vid-item { width: 100%; height: 100%; background: #000; }
+  .modal-vid-item iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  /* Flechas del carrusel del modal */
+  .modal-carousel-nav { display: flex; gap: 0.6rem; margin-top: 1rem; }
+  .modal-carousel-btn { background: transparent; border: 0.5px solid var(--border); color: var(--black); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: all 0.2s; }
+  .modal-carousel-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── EXPERIENCIA ─── */
+  #experiencia { background: var(--surface); border-top: 0.5px solid var(--border); }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .exp-col-title { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; font-weight: 500; border-bottom: 0.5px solid var(--border); padding-bottom: 0.75rem; }
+  .exp-item { padding: 1.5rem 0; border-bottom: 0.5px solid var(--border); }
+  .exp-item:first-of-type { padding-top: 0; }
+  .exp-period { font-size: 0.68rem; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.3rem; }
+  .exp-role { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.2rem; color: var(--black); }
+  .exp-company { font-size: 0.8rem; color: var(--black); margin-bottom: 0.5rem; font-weight: 400; }
+  .exp-desc { font-size: 0.82rem; line-height: 1.6; color: var(--gray-mid); }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .exp-tag { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); border: 0.5px solid var(--border); padding: 0.25rem 0.5rem; }
+
+  /* CLIENTES */
+  .clients-strip { grid-column: 1 / -1; margin-top: 4rem; padding-top: 3rem; border-top: 0.5px solid var(--border); text-align: center; }
+  .clients-label { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 2.5rem; }
+  .clients-list { display: flex; flex-wrap: wrap; gap: 3rem 4rem; align-items: center; justify-content: center; }
+  .client-logo-wrapper { display: flex; align-items: center; justify-content: center; }
+  .client-logo-wrapper img { height: 150px; width: auto; object-fit: contain; opacity: 0.25; transition: opacity 0.3s ease, transform 0.3s ease; }
+  .client-logo-wrapper:hover img { opacity: 1; transform: scale(1.06); }
+
+  /* ─── SKILLS ─── */
+  #skills { background: var(--black); color: var(--white); border-top: 0.5px solid rgba(255,255,255,0.06); }
+  #skills .section-label { color: var(--accent); }
+  #skills .section-title { color: var(--white); }
+  .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .skills-intro { font-size: 1.05rem; line-height: 1.7; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; }
+  .skill-stat { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1.5rem; }
+  .skill-stat-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.5rem; color: var(--white); line-height: 1; }
+  .skill-stat-unit { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--accent); text-transform: uppercase; }
+  .skill-stat-label { font-size: 0.75rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); text-transform: uppercase; margin-left: 0.25rem; }
+  .skills-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .skill-group-title { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+  .skill-item { margin-bottom: 1rem; }
+  .skill-item-name { font-size: 0.88rem; font-weight: 500; color: var(--white); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+  .skill-bar-track { height: 2px; background: rgba(255,255,255,0.08); position: relative; }
+  .skill-bar-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--white); }
+  .skill-bar-fill.accent { background: var(--accent); }
+  .skill-pct { font-size: 0.68rem; color: rgba(255,255,255,0.3); }
+
+  /* ─── PROCESO ─── */
+  #proceso { background: var(--bg); border-top: 0.5px solid var(--border); }
+  .proceso-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .proceso-step { padding: 2.5rem; border-right: 0.5px solid var(--border); position: relative; }
+  .proceso-step:last-child { border-right: none; }
+  .proceso-step-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 5rem; color: rgba(0,0,0,0.04); line-height: 1; margin-bottom: 1.5rem; display: block; }
+  .proceso-step-icon { width: 44px; height: 44px; border: 0.5px solid rgba(255,77,0,0.35); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+  .proceso-step-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.5; }
+  .proceso-step-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; color: var(--black); }
+  .proceso-step-desc { font-size: 0.85rem; line-height: 1.65; color: var(--gray-mid); }
+  .proceso-connector { position: absolute; top: 5.5rem; right: -1px; width: 20px; height: 1px; background: var(--accent); opacity: 0.4; }
+  .proceso-step:last-child .proceso-connector { display: none; }
+
+
+  /* ─── CUANDO ME ABURRO ─── */
+  #aburro { background: var(--bg); border-top: 0.5px solid var(--border); padding: 5rem 0; overflow: hidden; }
+  .aburro-header { padding: 0 3rem 3rem; }
+  .aburro-subtext { font-size: 0.88rem; color: var(--gray-mid); max-width: 480px; line-height: 1.6; margin-top: 0.5rem; }
+  .marquee-track { position: relative; width: 100%; overflow: hidden; }
+  .marquee-track::before, .marquee-track::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
+  .marquee-track::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+  .marquee-track::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+  .marquee-inner { display: flex; gap: 1rem; width: max-content; animation: marquee-scroll 30s linear infinite; }
+  .marquee-track:hover .marquee-inner { animation-play-state: paused; }
+  @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .marquee-item { flex-shrink: 0; width: 280px; height: 195px; overflow: hidden; position: relative; background: var(--surface); border: 0.5px solid var(--border); cursor: pointer; }
+  .marquee-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease, filter 0.4s ease; filter: grayscale(20%); }
+  .marquee-item:hover img { transform: scale(1.06); filter: grayscale(0%); }
+  .marquee-item-overlay { position: absolute; inset: 0; background: rgba(255,77,0,0.88); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; opacity: 0; transition: opacity 0.3s ease; padding: 1rem; text-align: center; }
+  .marquee-item:hover .marquee-item-overlay { opacity: 1; }
+  .marquee-item-overlay strong { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; }
+  .marquee-item-overlay small { font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.85); text-transform: uppercase; }
+  .marquee-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+  .marquee-placeholder svg { width: 26px; height: 26px; stroke: rgba(0,0,0,0.15); fill: none; stroke-width: 1; }
+  .marquee-placeholder span { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(0,0,0,0.18); }
+
+  /* ─── CONOCEME ─── */
+  #conoceme { background: var(--surface); border-top: 0.5px solid var(--border); }
+  .conoceme-layout { display: flex; gap: 3rem; align-items: flex-start; }
+  /* Foto circular pequeña */
+  .conoceme-avatar-col { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+  .conoceme-avatar { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; background: #ccc; border: 3px solid var(--bg); box-shadow: 0 0 0 1.5px var(--border); }
+  .conoceme-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .conoceme-avatar-placeholder { width: 150px; height: 150px; border-radius: 50%; background: rgba(0,0,0,0.06); border: 2px dashed rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
+  .conoceme-avatar-placeholder svg { width: 32px; height: 32px; stroke: rgba(0,0,0,0.2); fill: none; stroke-width: 1.2; }
+  .conoceme-avatar-placeholder span { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(0,0,0,0.25); text-align: center; line-height: 1.4; }
+  .conoceme-content { flex: 1; min-width: 0; }
+  .conoceme-accent-line { width: 36px; height: 3px; background: var(--accent); margin-bottom: 1.5rem; }
+  .conoceme-text { font-size: 1.05rem; line-height: 1.8; color: #555; }
+  .conoceme-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
+  .conoceme-tag { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 0.5px solid rgba(255,77,0,0.3); padding: 0.3rem 0.7rem; }
+  @media (max-width: 600px) { .conoceme-layout { flex-direction: column; align-items: flex-start; } }
+
+  /* ─── CONTACTO ─── */
+  #contacto { background: var(--bg); border-top: 0.5px solid var(--border); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .contact-intro { font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; }
+  .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--black); font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; padding: 1rem 0; border-top: 0.5px solid var(--border); transition: all 0.2s; }
+  .contact-link:hover { color: var(--accent); padding-left: 0.5rem; }
+  .contact-link-arrow { margin-left: auto; color: rgba(0,0,0,0.2); transition: all 0.2s; }
+  .contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(4px); }
+
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--black); border-top: 0.5px solid rgba(255,255,255,0.06); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+
+  /* ─── ANIMACIONES ─── */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .fade-up, .fade-up.visible { opacity: 1; transform: none; } }
+
+  /* ─── HAMBURGUESA MÓVIL ─── */
+  .hamburger-btn {
+    display: none; flex-direction: column; justify-content: center; gap: 5px;
+    background: transparent; border: 0.5px solid var(--border); padding: 0.5rem 0.6rem;
+    cursor: pointer; width: 38px; height: 38px; align-items: center;
+  }
+  .hamburger-btn span { display: block; width: 18px; height: 1.5px; background: var(--black); transition: all 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200;
+    background: rgba(242,241,238,0.97); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-close {
+    position: absolute; top: 1.4rem; right: 1.5rem;
+    background: transparent; border: 0.5px solid var(--border);
+    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 1rem; color: var(--black); transition: all 0.2s;
+  }
+  .mobile-menu-close:hover { border-color: var(--accent); color: var(--accent); }
+  .mobile-menu a {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 2rem;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--black);
+    text-decoration: none; padding: 0.5rem 2rem; transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-menu-lang { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 1.5rem; }
+    nav ul { gap: 1.25rem; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-headline { max-width: 100%; }
+    .exp-grid, .skills-layout, .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .proceso-grid { grid-template-columns: 1fr 1fr; }
+    .skills-cols { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .trabajos-grid { grid-template-columns: 1fr 1fr; }
+    .clients-list { gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    .hamburger-btn { display: flex; }
+    .proceso-grid { grid-template-columns: 1fr; }
+    .hero-bottom { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    .trabajos-grid { grid-template-columns: 1fr; }
+    .modal-carousel-slide.is-img, .modal-carousel-slide.is-vid { width: 90vw; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">GONZALO ARMISÉN<span>.</span></a>
+  <div class="nav-right">
+    <ul>
+      <li><a href="#trabajos" data-i18n="nav_works">Trabajos</a></li>
+      <li><a href="#experiencia" data-i18n="nav_exp">Experiencia</a></li>
+      <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+      <li><a href="#proceso" data-i18n="nav_process">Proceso</a></li>
+      <li><a href="#aburro" data-i18n="nav_aburro">Me aburro</a></li>
+      <li><a href="#conoceme" data-i18n="nav_conoceme">Conoceme</a></li>
+      <li><a href="#contacto" data-i18n="nav_contact">Contacto</a></li>
+    </ul>
+    <div class="lang-switcher" role="group" aria-label="Selección de idioma">
+      <button class="lang-btn active" data-lang="es" aria-pressed="true"><span class="flag">🇦🇷</span> ES</button>
+      <button class="lang-btn" data-lang="en" aria-pressed="false"><span class="flag">🇺🇸</span> EN</button>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <a href="#trabajos" data-i18n="nav_works">Trabajos</a>
+  <a href="#experiencia" data-i18n="nav_exp">Experiencia</a>
+  <a href="#skills" data-i18n="nav_skills">Skills</a>
+  <a href="#proceso" data-i18n="nav_process">Proceso</a>
+  <a href="#aburro" data-i18n="nav_aburro">Me aburro</a>
+  <a href="#conoceme" data-i18n="nav_conoceme">Conoceme</a>
+  <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+  <div class="mobile-menu-lang">
+    <button class="lang-btn active" data-lang="es" aria-pressed="true"><span class="flag">🇦🇷</span> ES</button>
+    <button class="lang-btn" data-lang="en" aria-pressed="false"><span class="flag">🇺🇸</span> EN</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <!--
+    IMAGEN DE FONDO HERO (full-bleed):
+    Opción A — imagen ya cargada: poné la ruta en style="background-image:url('TU_IMAGEN.jpg')"
+               y borrá el div .hero-bg-placeholder
+    Opción B — sin imagen aún: se muestra el placeholder automáticamente
+  -->
+  <div class="hero-bg-img" style="background-image:url('Logos/Background.png')" aria-hidden="true"></div>
+
+  <p class="hero-label" data-i18n="hero_label">Diseñador Industrial · Indumentaria Deportiva</p>
+  <h1 class="hero-headline" id="hero-title">HOLA SOY <span data-i18n="hero_name_accent">LALO.</span></h1>
+  <div class="hero-bottom">
+    <p class="hero-tagline" data-i18n="hero_tagline">Bienvenidos a mi mundo.
+Soy un diseñador industrial que desde muy chico eligió crear como medio de expresión. La vida me llevó a encontrar mis primeras experiencias laborales en el rubro textil y descubrí una unión fascinante entre el deporte y el diseño de producto. Hoy, con más de 8 años de trayectoria en la industria, sé que todavía queda mucho por crear y donde plasmar mi impronta. ¡Me encantaría que trabajemos juntos!.</p>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span data-i18n="hero_scroll">Ver trabajo</span>
+    </div>
+  </div>
+</section>
+
+<!-- TRABAJOS DESTACADOS — GRILLA DE TARJETAS -->
+<section id="trabajos">
+  <p class="section-label" data-i18n="works_label">Portfolio</p>
+  <h2 class="section-title" data-i18n="works_title">Trabajos<br>Destacados</h2>
+
+  <div class="trabajos-grid fade-up">
+
+    <!-- ══ TARJETA 1 ══ 
+         data-modal-images: array JSON de rutas de imágenes (se muestran primero)
+         data-modal-videos: array JSON de URLs embed de YouTube/MP4 (se muestran después)
+         data-modal-media:  array JSON mixto con orden personalizado → [{"type":"image","src":"..."}, {"type":"video","src":"..."}]
+                            Si usás data-modal-media, los otros dos atributos se ignoran.
+         data-modal-desc: descripción del proyecto / tu rol
+    -->
+    <div class="work-card"
+      data-modal-title="CÁPSULA — 'LA ESTRELLA SOS VOS' TALLERES DE CÓRDOBA"
+      data-modal-category="Teamwear / Football"
+      data-modal-year="2025"
+      data-modal-desc-es="Esta colección, titulada 'La estrella sos vos', conmemora la obtención de un nuevo título, pero con un enfoque especial: el logro no pertenece solo a los once jugadores en cancha, sino a cada persona que se sacrifica por alentar al club en todo momento."
+      data-modal-desc-en="This collection, titled 'La estrella sos vos' (The star is you), commemorates a new championship title with a special focus: the achievement belongs not only to the eleven players on the pitch, but to every person who sacrifices to support the club at all times."
+      data-modal-role-es="Product Designer — Le Coq Sportif Argentina"
+      data-modal-role-en="Product Designer — Le Coq Sportif Argentina"
+      data-modal-tags='["Design", "Product development", "Techpacks", "Fitting"]'
+      data-modal-desc="
+Para este diseño, resignificamos los tradicionales bastones de Talleres de Córdoba, haciéndolos más finos y combinándolos con un azul profundo 'noche' vistiendolos de gala. El escudo se aplicó como una placa plateada en el pecho, un galardón que queda impreso para siempre en la camiseta."
+      data-modal-media='[
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS.jpg"}, {"type":"video", "src":"Trabajos/CAT - ESTRELLAS PUBLI.mp4"}, {"type":"image", "src":"Trabajos/CAT - ESTRELLAS 1.jpg"}, {"type":"image", "src":"Trabajos/CAT - ESTRELLAS 2.jpg"}, {"type":"image", "src":"Trabajos/CAT - ESTRELLAS 3.jpg"}, {"type":"video", "src":"Trabajos/CAT - ESTRELLAS PUBLI DET.mp4"},{"type":"image", "src":"Trabajos/CAT - ESTRELLAS 4.jpg"}
+]'>
+      <div class="work-card-thumb">
+        <span class="work-card-index">01</span>
+        <img src="Trabajos/CAT - ESTRELLAS.jpg" alt="CAPSULA - LA ESTRELLA SOS VOS - TALLERES 2025" loading="lazy">
+      </div>
+      <div class="work-card-info">
+        <div class="work-card-meta">
+          <span class="work-card-cat">Teamwear / Football</span>
+          <span class="work-card-year">2025</span>
+        </div>
+        <h3 class="work-card-title" data-i18n="work1_title">CÁPSULA "LA ESTRELLA SOS VOS" — TALLERES</h3>
+        <p class="work-card-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          Ver proyecto
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ TARJETA 2 ══ -->
+    <div class="work-card"
+      data-modal-title="KIT OFICIAL TALLERES DE CÓRDOBA 2026 — CAMISETA TITULAR"
+      data-modal-category="Teamwear / Football"
+      data-modal-year="2026"
+      data-modal-desc-es="Descripción en español..."
+      data-modal-desc-en="Description in English..."
+      data-modal-role-es="Tu rol — Empresa"
+      data-modal-role-en="Your role — Company"
+      data-modal-tags='["Tag 1", "Tag 2", "Tag 3"]'
+      data-modal-desc="placeholder"
+      data-modal-media='[
+  {"type":"image", "src":"Trabajos/CAT - TIT 2026.jpg"}, {"type":"video", "src":"Trabajos/CAT - TIT 2026 PROMO.mp4"}, {"type":"image", "src":"Trabajos/CAT - TIT 2026 1.jpg"}, {"type":"image", "src":"Trabajos/CAT - TIT 2026 2.jpg"}, {"type":"image", "src":"Trabajos/CAT - TIT 2026 3.jpg"},{"type":"image", "src":"Trabajos/CAT - TIT 2026 4.jpg"}
+]'>
+      <div class="work-card-thumb">
+        <span class="work-card-index">02</span>
+        <img src="Trabajos/CAT - TIT 2026.jpg" alt="CAMISETA TITULAR TALLERES DE CORDOBA 2026" loading="lazy">
+      </div>
+      <div class="work-card-info">
+        <div class="work-card-meta">
+          <span class="work-card-cat">Teamwear / Football</span>
+          <span class="work-card-year">2026</span>
+        </div>
+        <h3 class="work-card-title" data-i18n="work2_title">KIT OFICIAL TALLERES 2026 — TITULAR</h3>
+        <p class="work-card-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          Ver proyecto
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ TARJETA 3 ══ -->
+    <div class="work-card"
+      data-modal-title="KIT OFICIAL TALLERES DE CÓRDOBA 2026 — CAMISETA ALTERNATIVA 2"
+      data-modal-category="Teamwear / Football"
+      data-modal-year="2026"
+      data-modal-desc-es="Descripción en español..."
+      data-modal-desc-en="Description in English..."
+      data-modal-role-es="Tu rol — Empresa"
+      data-modal-role-en="Your role — Company"
+      data-modal-tags='["Tag 1", "Tag 2", "Tag 3"]'
+      data-modal-desc="placeholder"
+      data-modal-media='[
+  {"type":"image", "src":"Trabajos/CAT - ALT 2 2026.jpg"}, {"type":"video", "src":"Trabajos/CAT - ALT 2 2026 PROMO.mp4"}, {"type":"image", "src":"Trabajos/CAT - ALT 2 2026 1.jpg"}, {"type":"image", "src":"Trabajos/CAT - ALT 2 2026 2.jpg"}, {"type":"image", "src":"Trabajos/CAT - ALT 2 2026 3.jpg"},{"type":"video", "src":"Trabajos/CAT - ALT 2 2026 DET.mp4"}, {"type":"image", "src":"Trabajos/CAT - ALT 2 2026 4.jpg"}
+]'>
+      <div class="work-card-thumb">
+        <span class="work-card-index">03</span>
+        <img src="Trabajos/CAT - ALT 2 2026.jpg" alt="CAMISETA ALTERNATIVA 2 TALLERES DE CORDOBA 2026" loading="lazy">
+      </div>
+      <div class="work-card-info">
+        <div class="work-card-meta">
+          <span class="work-card-cat">Teamwear / Football</span>
+          <span class="work-card-year">2026</span>
+        </div>
+        <h3 class="work-card-title" data-i18n="work3_title">KIT OFICIAL TALLERES 2026 — ALTERNATIVA 2</h3>
+        <p class="work-card-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          Ver proyecto
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ TARJETA 4 ══ -->
+    <div class="work-card"
+      data-modal-title="CÁPSULA LIFESTYLE — 'LA ESTRELLA SOS VOS' TALLERES DE CÓRDOBA"
+      data-modal-category="Indumentaria Lifestyle"
+      data-modal-year="2025"
+      data-modal-desc-es="La cápsula 'La estrella sos vos' no se limitó a la indumentaria deportiva: también tuvo su línea Lifestyle. Una colección de prendas de uso cotidiano que lleva el espíritu del título y la identidad de Talleres de Córdoba al día a día del hincha. Diseño que celebra el logro colectivo más allá del partido."
+      data-modal-desc-en="The 'La estrella sos vos' capsule extended beyond sportswear into a Lifestyle line — a collection of everyday garments that brings the spirit of the championship and Talleres de Córdoba's identity into the fan's daily life. Design that celebrates a collective achievement beyond the match."
+      data-modal-role-es="Product Designer — Le Coq Sportif Argentina"
+      data-modal-role-en="Product Designer — Le Coq Sportif Argentina"
+      data-modal-tags='["Lifestyle", "Indumentaria", "Cápsula", "Talleres de Córdoba", "Design"]'
+      data-modal-media='[
+  {"type":"video", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE PROMO.mp4"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 1.jpg"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 2.jpg"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 3.jpg"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 4.jpg"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 5.jpg"},
+  {"type":"image", "src":"Trabajos/CAT - ESTRELLAS LIFESTYLE 7.jpg"}
+]'>
+      <div class="work-card-thumb">
+        <span class="work-card-index">04</span>
+        <img src="Trabajos/CAT - ESTRELLAS LIFESTYLE 1.jpg" alt="Cápsula Lifestyle La Estrella Sos Vos — Talleres de Córdoba 2025" loading="lazy">
+      </div>
+      <div class="work-card-info">
+        <div class="work-card-meta">
+          <span class="work-card-cat">Indumentaria Lifestyle</span>
+          <span class="work-card-year">2025</span>
+        </div>
+        <h3 class="work-card-title" data-i18n="work4_title">CAT — ESTRELLAS LIFESTYLE</h3>
+        <p class="work-card-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+          Ver proyecto
+        </p>
+      </div>
+    </div>
+
+  </div><!-- fin .trabajos-grid -->
+</section>
+
+<!-- MODAL DE PROYECTO -->
+<div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-meta">
+          <span class="modal-category" id="modal-cat"></span>
+          <span class="modal-year-tag" id="modal-year"></span>
+        </div>
+        <div class="modal-title" id="modal-title-text"></div>
+      </div>
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="modal-body">
+      <!-- Rol + Tags -->
+      <div class="modal-meta-row">
+        <span class="modal-role" id="modal-role"></span>
+        <div class="modal-tags" id="modal-tags"></div>
+      </div>
+      <!-- Descripción editable -->
+      <p class="modal-desc" id="modal-desc"></p>
+      <!-- Carrusel de imágenes/videos con zoom -->
+      <div>
+        <div class="modal-carousel" id="modal-carousel"></div>
+        <div class="modal-carousel-nav">
+          <button class="modal-carousel-btn" id="mc-prev">←</button>
+          <button class="modal-carousel-btn" id="mc-next">→</button>
+        </div>
+      </div>
+      <!--
+        ══════════════════════════════════════════════
+        CÓMO PERSONALIZAR CADA PROYECTO:
+        En cada .work-card editá los atributos:
+
+        data-modal-desc="Tu descripción y rol"
+
+        data-modal-images='["img1.jpg","img2.jpg","img3.jpg"]'
+        → Agregá todas las imágenes que quieras (rutas relativas)
+
+        data-modal-videos='["https://www.youtube.com/embed/VIDEO_ID"]'
+        → Pegá la URL embed de YouTube (no la URL normal)
+
+        Zoom: hacé click sobre cualquier imagen en el modal para hacer zoom.
+        ══════════════════════════════════════════════
+      -->
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <p class="section-label" data-i18n="exp_label">Trayectoria</p>
+  <h2 class="section-title" data-i18n="exp_title">Experiencia<br>profesional</h2>
+  <div class="exp-grid fade-up">
+    <div>
+      <p class="exp-col-title" data-i18n="exp_col1">Experiencia laboral</p>
+      <div class="exp-item">
+        <p class="exp-period">Presente</p>
+        <p class="exp-role" data-i18n="job1_role">Product Designer</p>
+        <p class="exp-company">Le Coq Sportif Argentina</p>
+        <p class="exp-desc" data-i18n="job1_desc">Team Sport Department. A cargo del diseño para Talleres de Córdoba, Rosario Central, Los Pumas, el Comité Olímpico Argentino (COA), el Comité Paralímpico Argentino (COPAR) y la Federación Argentina de Vóley (FEVA).</p>
+        <div class="exp-tags"><span class="exp-tag">Product Design</span><span class="exp-tag">Team Sport</span><span class="exp-tag">Techpacks</span></div>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2017 — 2025</p>
+        <p class="exp-role">Product Designer</p>
+        <p class="exp-company">Canterbury Argentina</p>
+        <p class="exp-desc" data-i18n="job2_desc">Diseño y Gestión de producto para más de 25 clubes de Rugby y Hockey de Argentina y Uruguay, desarrollo de colecciones y techpacks. Diseño de estampas (sublimación, serigrafía) y bordados.</p>
+        <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Serigrafía</span><span class="exp-tag">Bordados</span></div>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2017 — 2025</p>
+        <p class="exp-role">Product Designer</p>
+        <p class="exp-company">Sur Pacífico SA</p>
+        <p class="exp-desc" data-i18n="job5_desc">Desarrollo de colecciones para licencias Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield y Mistral. Estampas y bordados. Trabajo con proveedores y fabricantes.</p>
+        <div class="exp-tags"><span class="exp-tag">Colecciones</span><span class="exp-tag">Sublimación</span><span class="exp-tag">Catálogos</span></div>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2016 — 2022</p>
+        <p class="exp-role" data-i18n="job3_role">Diseñador de Comunicación</p>
+        <p class="exp-company">La Plata Rugby Club</p>
+        <p class="exp-desc" data-i18n="job3_desc">Generación de contenido multimedia para redes sociales, afiches y publicidad del club.</p>
+        <div class="exp-tags"><span class="exp-tag">Social Media</span><span class="exp-tag">Comunicación</span></div>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2016, 2018 — 2020</p>
+        <p class="exp-role" data-i18n="job4_role">Ayudante de Cátedra</p>
+        <p class="exp-company">UNLP — FBA</p>
+        <p class="exp-desc" data-i18n="job4_desc">Cátedra B de Taller de Diseño Industrial I. Universidad Nacional de La Plata, Facultad de Bellas Artes.</p>
+        <div class="exp-tags"><span class="exp-tag">Docencia</span><span class="exp-tag">UNLP</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="exp-col-title" data-i18n="exp_col2">Formación</p>
+      <div class="exp-item">
+        <p class="exp-period">Mar 2013 — Feb 2018</p>
+        <p class="exp-role" data-i18n="edu1_role">Diseñador Industrial</p>
+        <p class="exp-company">UNLP — FBA · Universidad Nacional de La Plata</p>
+        <p class="exp-desc" data-i18n="edu1_desc">Grado en Diseño Industrial.</p>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">Abr 2019 — Feb 2020</p>
+        <p class="exp-role" data-i18n="edu2_role">Posgrado en Diseño de indumentaria deportiva</p>
+        <p class="exp-company">FADU — UBA · Universidad de Buenos Aires</p>
+        <p class="exp-desc" data-i18n="edu2_desc">Programa de actualización en diseño de indumentaria deportiva.</p>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2018</p>
+        <p class="exp-role" data-i18n="edu3_role">Patronaje Básico</p>
+        <p class="exp-company">UNLP — FBA · Por Irma Banchero</p>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2020</p>
+        <p class="exp-role" data-i18n="edu4_role">Diseño de Calzado</p>
+        <p class="exp-company" data-i18n="edu4_company">Workshop · Por Santiago Muñoz-Galaz</p>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2020</p>
+        <p class="exp-role" data-i18n="edu5_role">Estampado Textil</p>
+        <p class="exp-company">UTN · Online</p>
+      </div>
+      <div class="exp-item">
+        <p class="exp-period">2023</p>
+        <p class="exp-role" data-i18n="edu6_role">Diseño de Indumentaria</p>
+        <p class="exp-company" data-i18n="edu6_company">Municipalidad de La Plata</p>
+      </div>
+    </div>
+    <div class="clients-strip">
+      <p class="clients-label" data-i18n="clients_label">Marcas con las que colaboré</p>
+      <div class="clients-list">
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-01.png" alt="logo-01"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-02.png" alt="logo-02"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-03.png" alt="logo-03"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-04.png" alt="logo-04"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-05.png" alt="logo-05"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-06.png" alt="logo-06"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-07.png" alt="logo-07"></a>
+        <a class="client-logo-wrapper" href="#experiencia"><img src="Logos/logos-08.png" alt="logo-08"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label" data-i18n="skills_label">Capacidades</p>
+  <h2 class="section-title" data-i18n="skills_title">Skills</h2>
+  <div class="skills-layout">
+    <div class="fade-up">
+      <p class="skills-intro" data-i18n="skills_intro">Diseñador Industrial con especialización en indumentaria deportiva. Domino el proceso completo: desde el brief hasta la ficha técnica, con foco en materiales técnicos y construcción de alto rendimiento.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1rem">
+        <div class="skill-stat"><span class="skill-stat-num">8+</span><div><span class="skill-stat-unit" data-i18n="stat1_unit">Años</span><p class="skill-stat-label" data-i18n="stat1_label">de experiencia</p></div></div>
+        <div class="skill-stat"><span class="skill-stat-num">8</span><div><span class="skill-stat-unit" data-i18n="stat3_unit">Marcas</span><p class="skill-stat-label" data-i18n="stat3_label">con las que trabajé</p></div></div>
+        <div class="skill-stat"><span class="skill-stat-num">2</span><div><span class="skill-stat-unit" data-i18n="stat5_unit">Idiomas</span><p class="skill-stat-label" data-i18n="stat5_label">Español · Inglés</p></div></div>
+      </div>
+    </div>
+    <div class="skills-cols fade-up">
+      <div>
+        <p class="skill-group-title" data-i18n="skills_group1">Software</p>
+        <div class="skill-item"><div class="skill-item-name"><span>Photoshop</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Illustrator</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>CLO 3D</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Marvelous Designer</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Rhinoceros 3D</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span>Keyshot</span></div><div class="skill-bar-track"><div class="skill-bar-fill accent" style="width:100%"></div></div></div>
+      </div>
+      <div>
+        <p class="skill-group-title" data-i18n="skills_group2">Técnico</p>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s1">Techpacks</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s2">Patronaje</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s3">Diseño 3D / Render</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s4">Estampas / Sublimación</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><div class="skill-item-name"><span data-i18n="skill_s5">Dibujo técnico / CNC</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <p class="section-label" data-i18n="process_label">Metodología</p>
+  <h2 class="section-title" data-i18n="process_title">Proceso de<br>diseño</h2>
+  <div class="proceso-grid fade-up">
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">01</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step1_title">Brief & Research</h3>
+      <p class="proceso-step-desc" data-i18n="step1_desc">Análisis del deporte, el usuario y la competencia. Definición de los requerimientos técnicos y funcionales clave del producto.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">02</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step2_title">Concepto & Bocetos</h3>
+      <p class="proceso-step-desc" data-i18n="step2_desc">Exploración de formas, cortes y soluciones constructivas. Definición del lenguaje visual y las decisiones de materialidad.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">03</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step3_title">Desarrollo CAD</h3>
+      <p class="proceso-step-desc" data-i18n="step3_desc">Modelado en CLO 3D / Marvelous, patronaje técnico y renders en Keyshot. Iteración sobre silueta y paneles funcionales.</p>
+      <div class="proceso-connector"></div>
+    </div>
+    <div class="proceso-step">
+      <span class="proceso-step-num" aria-hidden="true">04</span>
+      <div class="proceso-step-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h3 class="proceso-step-title" data-i18n="step4_title">Techpack</h3>
+      <p class="proceso-step-desc" data-i18n="step4_desc">Entrega de ficha técnica completa con materiales, construcciones, avíos y especificaciones de confección para producción.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUANDO ME ABURRO -->
+<section id="aburro">
+  <div class="aburro-header fade-up">
+    <p class="section-label" data-i18n="aburro_label">Proyectos personales</p>
+    <h2 class="section-title" data-i18n="aburro_title">Cuando me aburro</h2>
+    <p class="aburro-subtext" data-i18n="aburro_sub">Lo que diseño cuando no estoy diseñando para otros. Proyectos propios, experimentos y cosas que me dan ganas de hacer.</p>
+  </div>
+
+  <!--
+    CÓMO AGREGAR IMÁGENES A LA CINTA:
+    1. Copia uno de los bloques .marquee-item de abajo
+    2. Reemplazá src="..." con la ruta de tu imagen
+    3. Editá el título y categoría en .marquee-item-overlay
+    4. Agregá el mismo bloque tanto en la primera mitad como en la segunda
+       (el segundo set es el loop — deben ser idénticos)
+  -->
+  <div class="marquee-track">
+    <div class="marquee-inner" id="marquee-inner">
+
+      <!-- ══ PRIMERA MITAD ══ -->
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/VELEZ X BZRP.png" data-mq-title="VÉLEZ × BZRP" data-mq-cat="Fútbol / Concepto">
+        <img src="Trabajos/VELEZ X BZRP.png" alt="VÉLEZ × BZRP" loading="lazy">
+        <div class="marquee-item-overlay"><strong>VÉLEZ × BZRP</strong><small>Fútbol / Concepto</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/Rugby_CCC_Pampas.png" data-mq-title="PAMPAS XV — CCC Rugby" data-mq-cat="Rugby / Teamwear">
+        <img src="Trabajos/Rugby_CCC_Pampas.png" alt="PAMPAS XV — CCC Rugby" loading="lazy">
+        <div class="marquee-item-overlay"><strong>PAMPAS XV</strong><small>Rugby / Teamwear</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="video" data-mq-src="Trabajos/UAR BOOTS.mp4" data-mq-title="UAR Boots — Los Pumas" data-mq-cat="Rugby / Calzado">
+        <video src="Trabajos/UAR BOOTS.mp4" muted loop autoplay playsinline style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></video>
+        <div class="marquee-item-overlay">
+          <svg viewBox="0 0 24 24" fill="white" width="28" height="28" style="margin-bottom:4px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <strong>UAR BOOTS</strong><small>Rugby / Calzado</small>
+        </div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/dukopres2.png" data-mq-title="DUKO — Indumentaria Urbana" data-mq-cat="Urbano / Lifestyle">
+        <img src="Trabajos/dukopres2.png" alt="DUKO — Indumentaria Urbana" loading="lazy">
+        <div class="marquee-item-overlay"><strong>DUKO</strong><small>Urbano / Lifestyle</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/cactusrender2.png" data-mq-title="CACT.US JACK × NIKE" data-mq-cat="Colaboración / Concepto">
+        <img src="Trabajos/cactusrender2.png" alt="CACT.US JACK × NIKE" loading="lazy">
+        <div class="marquee-item-overlay"><strong>CACT.US JACK × NIKE</strong><small>Colaboración / Concepto</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/GELP PREMATCH.png" data-mq-title="LOBO — Prematch" data-mq-cat="Fútbol / Prematch">
+        <img src="Trabajos/GELP PREMATCH.png" alt="LOBO — Prematch" loading="lazy">
+        <div class="marquee-item-overlay"><strong>LOBO — PREMATCH</strong><small>Fútbol / Prematch</small></div>
+      </div>
+
+      <!-- ══ SEGUNDA MITAD — loop ══ -->
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/VELEZ X BZRP.png" data-mq-title="VÉLEZ × BZRP" data-mq-cat="Fútbol / Concepto">
+        <img src="Trabajos/VELEZ X BZRP.png" alt="VÉLEZ × BZRP" loading="lazy">
+        <div class="marquee-item-overlay"><strong>VÉLEZ × BZRP</strong><small>Fútbol / Concepto</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/Rugby_CCC_Pampas.png" data-mq-title="PAMPAS XV — CCC Rugby" data-mq-cat="Rugby / Teamwear">
+        <img src="Trabajos/Rugby_CCC_Pampas.png" alt="PAMPAS XV — CCC Rugby" loading="lazy">
+        <div class="marquee-item-overlay"><strong>PAMPAS XV</strong><small>Rugby / Teamwear</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="video" data-mq-src="Trabajos/UAR BOOTS.mp4" data-mq-title="UAR Boots — Los Pumas" data-mq-cat="Rugby / Calzado">
+        <video src="Trabajos/UAR BOOTS.mp4" muted loop autoplay playsinline style="width:100%;height:100%;object-fit:cover;pointer-events:none;"></video>
+        <div class="marquee-item-overlay">
+          <svg viewBox="0 0 24 24" fill="white" width="28" height="28" style="margin-bottom:4px"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <strong>UAR BOOTS</strong><small>Rugby / Calzado</small>
+        </div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/dukopres2.png" data-mq-title="DUKO — Indumentaria Urbana" data-mq-cat="Urbano / Lifestyle">
+        <img src="Trabajos/dukopres2.png" alt="DUKO — Indumentaria Urbana" loading="lazy">
+        <div class="marquee-item-overlay"><strong>DUKO</strong><small>Urbano / Lifestyle</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/cactusrender2.png" data-mq-title="CACT.US JACK × NIKE" data-mq-cat="Colaboración / Concepto">
+        <img src="Trabajos/cactusrender2.png" alt="CACT.US JACK × NIKE" loading="lazy">
+        <div class="marquee-item-overlay"><strong>CACT.US JACK × NIKE</strong><small>Colaboración / Concepto</small></div>
+      </div>
+      <div class="marquee-item" data-mq-type="image" data-mq-src="Trabajos/GELP PREMATCH.png" data-mq-title="LOBO — Prematch" data-mq-cat="Fútbol / Prematch">
+        <img src="Trabajos/GELP PREMATCH.png" alt="LOBO — Prematch" loading="lazy">
+        <div class="marquee-item-overlay"><strong>LOBO — PREMATCH</strong><small>Fútbol / Prematch</small></div>
+      </div>
+
+    </div><!-- fin .marquee-inner -->
+  </div><!-- fin .marquee-track -->
+
+  <!-- LIGHTBOX para marquee items -->
+  <div id="mq-lightbox" style="display:none;position:fixed;inset:0;z-index:400;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;padding:1.5rem;">
+    <button id="mq-lb-close" style="position:absolute;top:1.25rem;right:1.5rem;background:transparent;border:0.5px solid rgba(255,255,255,0.2);color:#fff;width:40px;height:40px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;">✕</button>
+    <div id="mq-lb-inner" style="max-width:900px;width:100%;max-height:90vh;display:flex;align-items:center;justify-content:center;"></div>
+    <div id="mq-lb-label" style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);text-align:center;">
+      <p id="mq-lb-title" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:0.1em;text-transform:uppercase;color:#fff;"></p>
+      <p id="mq-lb-cat" style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-top:0.25rem;"></p>
+    </div>
+  </div>
+</section>
+
+<!-- CONOCEME -->
+<section id="conoceme">
+  <p class="section-label" data-i18n="conoceme_label">Sobre mí</p>
+  <h2 class="section-title" data-i18n="conoceme_title">Conoceme</h2>
+  <div class="conoceme-layout fade-up">
+
+    <!-- FOTO 150×150: 
+         Para mostrar tu foto: eliminá el div .conoceme-avatar-placeholder,
+         quitá style="display:none" del .conoceme-avatar y poné tu ruta en src="" -->
+    <div class="conoceme-avatar-col">
+      <div class="conoceme-avatar" id="conoceme-photo">
+        <img src="Logos/Profile photo.png" alt="Gonzalo Armisén" id="conoceme-photo-src">
+      </div>
+    </div>
+
+    <div class="conoceme-content">
+      <div class="conoceme-accent-line"></div>
+      <!-- EDITÁ TU DESCRIPCIÓN ACÁ -->
+      <p class="conoceme-text" data-i18n="conoceme_text">
+        Soy Gonzalo, diseñador industrial de La Plata especializado en indumentaria deportiva. Desde chico el diseño fue mi forma de ver el mundo, y logré convertirlo en mi trabajo. Hoy desarrollo productos para marcas líderes del deporte argentino, combinando visión estética con rigor técnico en cada proyecto.
+      </p>
+      <div class="conoceme-tags">
+        <span class="conoceme-tag">Product development</span>
+        <span class="conoceme-tag">Industrial Design</span>
+        <span class="conoceme-tag">Sportwear</span>
+        <span class="conoceme-tag">Techpacks</span>
+        <span class="conoceme-tag">3D Modeling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label" data-i18n="contact_label">Hablemos</p>
+  <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
+  <div class="contact-layout" style="grid-template-columns:1fr;max-width:600px">
+    <div class="fade-up">
+      <p class="contact-intro" data-i18n="contact_intro">Abierto a proyectos de indumentaria deportiva, colaboraciones con marcas y consultoría técnica. Si tenés un proyecto o querés trabajar juntos, escribime.</p>
+      <div class="contact-links">
+        <a href="mailto:gonzalo.armisen@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          gonzalo.armisen@gmail.com <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.linkedin.com/in/gonzaloarmisen" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          /gonzaloarmisen <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://www.instagram.com/g.armisenporfolio" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          @g.armisenporfolio <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="tel:+5492216117975" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +54 9 221 611 7975 <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">GONZALO ARMISÉN<span>.</span></span>
+  <span class="footer-copy" data-i18n="footer_copy">© 2026 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires</span>
+</footer>
+
+<script>
+const translations = {
+  es: {
+    nav_works: "Trabajos", nav_exp: "Experiencia", nav_skills: "Skills", nav_process: "Proceso", nav_aburro: "Me aburro", nav_conoceme: "Conoceme", nav_contact: "Contacto",
+    hero_label: "Diseñador Industrial · Indumentaria Deportiva",
+    hero_name_accent: "LALO.",
+    hero_tagline: "Bienvenidos a mi mundo. Soy un diseñador industrial que desde muy chico eligió crear como medio de expresión. La vida me llevó a encontrar mis primeras experiencias laborales en el rubro textil y descubrí una unión fascinante entre el deporte y el diseño de producto. Hoy, con más de 8 años de trayectoria en la industria, sé que todavía queda mucho por crear y donde plasmar mi impronta. ¡Me encantaría que trabajemos juntos!.",
+    hero_scroll: "Ver trabajo",
+    works_label: "Portfolio", works_title: "Trabajos<br>Destacados",
+    work1_title: "CÁPSULA &ldquo;LA ESTRELLA SOS VOS&rdquo; — TALLERES", work2_title: "KIT OFICIAL TALLERES 2026 — TITULAR",
+    work3_title: "KIT OFICIAL TALLERES 2026 — ALT. 2", work4_title: "CAT — ESTRELLAS LIFESTYLE",
+    exp_label: "Trayectoria", exp_title: "Experiencia<br>profesional",
+    exp_col1: "Experiencia laboral", exp_col2: "Formación",
+    job1_role: "Product Designer",
+    job1_desc: "Team Sport Department. A cargo del diseño para Talleres de Córdoba, Rosario Central, Los Pumas, el Comité Olímpico Argentino (COA), el Comité Paralímpico Argentino (COPAR) y la Federación Argentina de Vóley (FEVA).",
+    job3_role: "Diseñador de Comunicación", job3_desc: "Generación de contenido multimedia para redes sociales, afiches y publicidad del club.",
+    job4_role: "Ayudante de Cátedra", job4_desc: "Cátedra B de Taller de Diseño Industrial I. Universidad Nacional de La Plata, Facultad de Bellas Artes.",
+    clients_label: "Marcas con las que colaboré",
+    edu1_role: "Diseñador Industrial", edu1_desc: "Grado en Diseño Industrial.",
+    edu2_role: "Posgrado en Diseño de indumentaria deportiva", edu2_desc: "Programa de actualización en diseño de indumentaria deportiva.",
+    edu3_role: "Patronaje Básico", edu4_role: "Diseño de Calzado", edu4_company: "Workshop · Por Santiago Muñoz-Galaz",
+    edu5_role: "Estampado Textil", edu6_role: "Diseño de Indumentaria", edu6_company: "Municipalidad de La Plata",
+    skills_label: "Capacidades", skills_title: "Skills",
+    skills_intro: "Diseñador Industrial con especialización en indumentaria deportiva. Domino el proceso completo: desde el brief hasta la ficha técnica, con foco en materiales técnicos y construcción de alto rendimiento.",
+    stat1_unit: "Años", stat1_label: "de experiencia", stat3_unit: "Marcas", stat3_label: "con las que trabajé", stat5_unit: "Idiomas", stat5_label: "Español · Inglés",
+    skills_group1: "Software", skills_group2: "Técnico",
+    skill_s1: "Techpacks", skill_s2: "Patronaje", skill_s3: "Diseño 3D / Render", skill_s4: "Estampas / Sublimación", skill_s5: "Dibujo técnico / CNC",
+    process_label: "Metodología", process_title: "Proceso de<br>diseño",
+    step1_title: "Brief & Research", step1_desc: "Análisis del deporte, el usuario y la competencia. Definición de los requerimientos técnicos y funcionales clave del producto.",
+    step2_title: "Concepto & Bocetos", step2_desc: "Exploración de formas, cortes y soluciones constructivas. Definición del lenguaje visual y las decisiones de materialidad.",
+    step3_title: "Desarrollo CAD", step3_desc: "Modelado en CLO 3D / Marvelous, patronaje técnico y renders en Keyshot. Iteración sobre silueta y paneles funcionales.",
+    step4_title: "Techpack", step4_desc: "Entrega de ficha técnica completa con materiales, construcciones, avíos y especificaciones de confección para producción.",
+    aburro_label: "Proyectos personales", aburro_title: "Cuando me aburro", aburro_sub: "Lo que diseño cuando no estoy diseñando para otros. Proyectos propios, experimentos y cosas que me dan ganas de hacer.",
+    conoceme_label: "Sobre mí", conoceme_title: "Conoceme",
+    conoceme_text: "Soy Gonzalo, diseñador industrial de La Plata especializado en indumentaria deportiva. Desde chico el diseño fue mi forma de ver el mundo, y logré convertirlo en mi trabajo. Hoy desarrollo productos para marcas líderes del deporte argentino, combinando visión estética con rigor técnico en cada proyecto.",
+    contact_label: "Hablemos", contact_title: "Contacto",
+    contact_intro: "Abierto a proyectos de indumentaria deportiva, colaboraciones con marcas y consultoría técnica. Si tenés un proyecto o querés trabajar juntos, escribime.",
+    form_name_label: "Nombre", form_name_ph: "Tu nombre",
+    form_subject_label: "Asunto", form_subject_ph: "¿De qué se trata el proyecto?",
+    form_msg_label: "Mensaje", form_msg_ph: "Contame más sobre lo que tenés en mente...",
+    form_send: "Enviar mensaje",
+    footer_copy: "© 2026 · Diseñador Industrial · Indumentaria Deportiva · Buenos Aires",
+    alert_sent: "¡Gracias! Mensaje enviado."
+  },
+  en: {
+    nav_works: "Works", nav_exp: "Experience", nav_skills: "Skills", nav_process: "Process", nav_aburro: "Free time", nav_conoceme: "About me", nav_contact: "Contact",
+    hero_label: "Industrial Designer · Sportswear",
+    hero_name_accent: "LALO.",
+    hero_tagline: "Welcome to my world.I am an industrial designer who, from a very young age, chose creation as a means of expression. Life led me to my first work experiences in the textile industry, where I discovered a fascinating intersection between sports and product design. Today, with over 8 years of experience in the industry, I know there is still so much left to create and places to leave my mark. I would love for us to work together! I invite you to take a look at what I do.",
+    hero_scroll: "See work",
+    works_label: "Portfolio", works_title: "Featured<br>Works",
+    work1_title: "CAPSULE &ldquo;LA ESTRELLA SOS VOS&rdquo; — TALLERES", work2_title: "TALLERES 2026 OFFICIAL KIT — HOME",
+    work3_title: "TALLERES 2026 OFFICIAL KIT — ALT. 2", work4_title: "CAT — ESTRELLAS LIFESTYLE",
+    exp_label: "Career", exp_title: "Professional<br>experience",
+    exp_col1: "Work experience", exp_col2: "Education",
+    job1_role: "Product Designer",
+    job1_desc: "Team Sport Department. In charge of design for Talleres de Córdoba, Rosario Central, Los Pumas, the Argentine Olympic Committee (COA), the Argentine Paralympic Committee (COPAR) and the Argentine Volleyball Federation (FEVA).",
+    job2_desc: "Product design and management for over 25 Rugby and Hockey clubs across Argentina and Uruguay. Collection development and tech packs. Print design including sublimation, screen printing, and embroidery.",
+    job3_role: "Communication Designer", job3_desc: "Multimedia content generation for social media, posters and club advertising.",
+    job5_desc: "Collection development for licensed brands including Wrangler, Lee, Royal Enfield, U.S. Polo Assn., Brooksfield and Mistral. Print and embroidery design. Collaboration with suppliers and manufacturers.",
+    job4_role: "Teaching Assistant", job4_desc: "Industrial Design Workshop I, Department B. National University of La Plata, Faculty of Fine Arts.",
+    clients_label: "Brands I've worked with",
+    edu1_role: "Industrial Designer", edu1_desc: "Degree in Industrial Design.",
+    edu2_role: "Postgraduate in Sportswear Design", edu2_desc: "Specialization program in sportswear design.",
+    edu3_role: "Basic Pattern Making", edu4_role: "Footwear Design", edu4_company: "Workshop · By Santiago Muñoz-Galaz",
+    edu5_role: "Textile Printing", edu6_role: "Apparel Design", edu6_company: "Municipality of La Plata",
+    skills_label: "Capabilities", skills_title: "Skills",
+    skills_intro: "Industrial Designer specialized in sportswear. Full process mastery: from brief to tech pack, focused on technical materials and high-performance construction.",
+    stat1_unit: "Years", stat1_label: "of experience", stat3_unit: "Brands", stat3_label: "worked with", stat5_unit: "Languages", stat5_label: "Spanish · English",
+    skills_group1: "Software", skills_group2: "Technical",
+    skill_s1: "Tech Packs", skill_s2: "Pattern Making", skill_s3: "3D Design / Render", skill_s4: "Prints / Sublimation", skill_s5: "Technical Drawing / CNC",
+    process_label: "Methodology", process_title: "Design<br>process",
+    step1_title: "Brief & Research", step1_desc: "Analysis of the sport, the user and competition. Definition of key technical and functional requirements.",
+    step2_title: "Concept & Sketches", step2_desc: "Exploration of shapes, cuts and constructive solutions. Definition of visual language and materiality decisions.",
+    step3_title: "CAD Development", step3_desc: "3D modelling in CLO / Marvelous, pattern making and Keyshot renders. Iteration on silhouette and functional panels.",
+    step4_title: "Tech Pack", step4_desc: "Delivery of a complete tech pack with materials, constructions, trims and sewing specs for production.",
+    aburro_label: "Personal projects", aburro_title: "When I get bored", aburro_sub: "What I design when I'm not designing for others. Personal projects, experiments and things I just feel like making.",
+    conoceme_label: "About me", conoceme_title: "About me",
+    conoceme_text: "I'm Gonzalo, an industrial designer from La Plata specialized in sportswear. Design has been my way of seeing the world since I was a kid, and I turned it into my career. Today I develop products for leading Argentine sports brands, combining aesthetic vision with technical rigor in every project.",
+    contact_label: "Let's talk", contact_title: "Contact",
+    contact_intro: "Open to sportswear projects, brand collaborations and technical consulting. If you have a project or want to work together, reach out.",
+    form_name_label: "Name", form_name_ph: "Your name",
+    form_subject_label: "Subject", form_subject_ph: "What is the project about?",
+    form_msg_label: "Message", form_msg_ph: "Tell me more about what you have in mind...",
+    form_send: "Send message",
+    footer_copy: "© 2026 · Industrial Designer · Sportswear · Buenos Aires",
+    alert_sent: "Thanks! Message sent."
+  }
+};
+
+let currentLang = 'es';
+
+function applyLang(lang) {
+  const t = translations[lang];
+  const heroTitle = document.getElementById('hero-title');
+  if (heroTitle) {
+    const greeting = lang === 'en' ? 'HI I\'M' : 'HOLA SOY';
+    heroTitle.innerHTML = `${greeting} <span>${t['hero_name_accent'] || 'LALO'}</span>`;
+  }
+  // Si hay un modal abierto, actualizar descripción y rol
+  const activeModal = document.getElementById('project-modal');
+  if (activeModal.classList.contains('open') && activeModal._activeCard) {
+    const c = activeModal._activeCard;
+    const descEs2 = c.getAttribute('data-modal-desc-es') || c.getAttribute('data-modal-desc') || '';
+    const descEn2 = c.getAttribute('data-modal-desc-en') || descEs2;
+    document.getElementById('modal-desc').textContent = lang === 'en' ? descEn2 : descEs2;
+    const roleEs2 = c.getAttribute('data-modal-role-es') || c.getAttribute('data-modal-role') || '';
+    const roleEn2 = c.getAttribute('data-modal-role-en') || roleEs2;
+    document.getElementById('modal-role').textContent = lang === 'en' ? roleEn2 : roleEs2;
+  }
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key !== 'hero_name_accent' && t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.getAttribute('data-lang') === lang;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active);
+  });
+  document.documentElement.lang = lang;
+  currentLang = lang;
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')))
+);
+
+
+
+// ── MODAL DE PROYECTO ──
+const modal    = document.getElementById('project-modal');
+const mcPrev   = document.getElementById('mc-prev');
+const mcNext   = document.getElementById('mc-next');
+let currentCarousel = null;
+
+function addImageSlide(container, src, title) {
+  const slide = document.createElement('div');
+  slide.className = 'modal-carousel-slide is-img';
+  const wrap = document.createElement('div');
+  wrap.className = 'modal-img-item';
+  const img = document.createElement('img');
+  img.src = src; img.alt = title; img.loading = 'lazy';
+  wrap.addEventListener('click', (e) => {
+    const rect = wrap.getBoundingClientRect();
+    const ox = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const oy = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1) + '%';
+    wrap.style.setProperty('--ox', ox);
+    wrap.style.setProperty('--oy', oy);
+    wrap.classList.toggle('zoomed');
+  });
+  wrap.appendChild(img); slide.appendChild(wrap); container.appendChild(slide);
+}
+
+function addVideoSlide(container, src) {
+  const slide = document.createElement('div');
+  slide.className = 'modal-carousel-slide is-vid';
+  const wrap = document.createElement('div');
+  wrap.className = 'modal-vid-item';
+  if (src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.mov')) {
+    const video = document.createElement('video');
+    video.src = src; video.controls = true; video.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    wrap.appendChild(video);
+  } else {
+    const iframe = document.createElement('iframe');
+    iframe.src = src; iframe.allowFullscreen = true;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    wrap.appendChild(iframe);
+  }
+  slide.appendChild(wrap); container.appendChild(slide);
+}
+
+function buildCarousel(images, videos, title, mediaList) {
+  const container = document.getElementById('modal-carousel');
+  container.innerHTML = '';
+  currentCarousel = container;
+
+  // Formato mixto: data-modal-media tiene prioridad
+  if (mediaList && mediaList.length) {
+    mediaList.forEach(item => {
+      if (item.type === 'image') addImageSlide(container, item.src, title);
+      else if (item.type === 'video') addVideoSlide(container, item.src);
+    });
+    return;
+  }
+  // Formato clásico: imágenes primero, videos después
+  images.forEach(src => addImageSlide(container, src, title));
+  videos.forEach(src => addVideoSlide(container, src));
+}
+
+function openModal(card) {
+  const title    = card.getAttribute('data-modal-title') || '';
+  const category = card.getAttribute('data-modal-category') || '';
+  const year     = card.getAttribute('data-modal-year') || '';
+  let images = [], videos = [], mediaList = [], tags = [];
+  try { images    = JSON.parse(card.getAttribute('data-modal-images') || '[]'); } catch(e){}
+  try { videos    = JSON.parse(card.getAttribute('data-modal-videos') || '[]'); } catch(e){}
+  try { mediaList = JSON.parse(card.getAttribute('data-modal-media')  || '[]'); } catch(e){}
+  try { tags      = JSON.parse(card.getAttribute('data-modal-tags')   || '[]'); } catch(e){}
+
+  // Descripción bilingüe: busca data-modal-desc-es / data-modal-desc-en, si no existe usa data-modal-desc
+  const descEs = card.getAttribute('data-modal-desc-es') || card.getAttribute('data-modal-desc') || '';
+  const descEn = card.getAttribute('data-modal-desc-en') || descEs;
+  const desc   = currentLang === 'en' ? descEn : descEs;
+
+  // Rol bilingüe
+  const roleEs = card.getAttribute('data-modal-role-es') || card.getAttribute('data-modal-role') || '';
+  const roleEn = card.getAttribute('data-modal-role-en') || roleEs;
+  const role   = currentLang === 'en' ? roleEn : roleEs;
+
+  document.getElementById('modal-cat').textContent        = category;
+  document.getElementById('modal-year').textContent       = year;
+  document.getElementById('modal-title-text').textContent = title;
+  document.getElementById('modal-desc').textContent       = desc;
+  document.getElementById('modal-role').textContent       = role;
+
+  // Tags
+  const tagsEl = document.getElementById('modal-tags');
+  tagsEl.innerHTML = '';
+  tags.forEach(t => { const s = document.createElement('span'); s.className = 'modal-tag'; s.textContent = t; tagsEl.appendChild(s); });
+
+  // Guardar referencia a la card para actualizar al cambiar idioma
+  document.getElementById('project-modal').dataset.activeCard = '';
+  document.getElementById('project-modal')._activeCard = card;
+
+  buildCarousel(images, videos, title, mediaList);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  // limpiar iframes para detener videos
+  document.getElementById('modal-carousel').innerHTML = '';
+}
+
+// Click en tarjetas — anti-drag
+let pointerStart = {x:0, y:0};
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('pointerdown', e => { pointerStart = {x: e.clientX, y: e.clientY}; });
+  card.addEventListener('click', e => {
+    const moved = Math.abs(e.clientX - pointerStart.x) + Math.abs(e.clientY - pointerStart.y);
+    if (moved < 6) openModal(card);
+  });
+});
+
+document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Flechas del carrusel interno
+const slideW = () => {
+  const s = document.querySelector('.modal-carousel-slide');
+  return s ? s.offsetWidth + 16 : 580; // 16 = gap
+};
+mcPrev.addEventListener('click', () => {
+  if (currentCarousel) currentCarousel.scrollBy({ left: -slideW(), behavior: 'smooth' });
+});
+mcNext.addEventListener('click', () => {
+  if (currentCarousel) currentCarousel.scrollBy({ left:  slideW(), behavior: 'smooth' });
+});
+
+// ── LIGHTBOX MARQUEE ──
+const mqLightbox  = document.getElementById('mq-lightbox');
+const mqLbInner   = document.getElementById('mq-lb-inner');
+const mqLbTitle   = document.getElementById('mq-lb-title');
+const mqLbCat     = document.getElementById('mq-lb-cat');
+const mqLbClose   = document.getElementById('mq-lb-close');
+
+function openMqLightbox(item) {
+  const type  = item.getAttribute('data-mq-type');
+  const src   = item.getAttribute('data-mq-src');
+  const title = item.getAttribute('data-mq-title') || '';
+  const cat   = item.getAttribute('data-mq-cat')   || '';
+
+  mqLbInner.innerHTML = '';
+  mqLbTitle.textContent = title;
+  mqLbCat.textContent   = cat;
+
+  if (type === 'video') {
+    const video = document.createElement('video');
+    video.src = src; video.controls = true; video.autoplay = true;
+    video.style.cssText = 'max-width:100%;max-height:80vh;display:block;outline:none;';
+    mqLbInner.appendChild(video);
+  } else {
+    const img = document.createElement('img');
+    img.src = src; img.alt = title;
+    img.style.cssText = 'max-width:100%;max-height:80vh;display:block;cursor:zoom-in;transition:transform 0.3s;';
+    let zoomed = false;
+    img.addEventListener('click', () => {
+      zoomed = !zoomed;
+      img.style.maxHeight  = zoomed ? 'none'     : '80vh';
+      img.style.cursor     = zoomed ? 'zoom-out' : 'zoom-in';
+      img.style.transform  = zoomed ? 'scale(1.6) translateY(0)' : 'scale(1)';
+    });
+    mqLbInner.appendChild(img);
+  }
+
+  mqLightbox.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMqLightbox() {
+  mqLightbox.style.display = 'none';
+  document.body.style.overflow = '';
+  const vid = mqLbInner.querySelector('video');
+  if (vid) vid.pause();
+  mqLbInner.innerHTML = '';
+}
+
+// Anti-drag para marquee: solo abre si el puntero no se movió demasiado
+let mqPointerStart = {x:0, y:0};
+document.querySelectorAll('.marquee-item[data-mq-src]').forEach(item => {
+  item.addEventListener('pointerdown', e => { mqPointerStart = {x: e.clientX, y: e.clientY}; });
+  item.addEventListener('click', e => {
+    const moved = Math.abs(e.clientX - mqPointerStart.x) + Math.abs(e.clientY - mqPointerStart.y);
+    if (moved < 8) openMqLightbox(item);
+  });
+  item.style.cursor = 'pointer';
+});
+
+mqLbClose.addEventListener('click', closeMqLightbox);
+mqLightbox.addEventListener('click', e => { if (e.target === mqLightbox || e.target === mqLbInner) closeMqLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMqLightbox(); });
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── MENÚ HAMBURGUESA ──
+const hamburgerBtn   = document.getElementById('hamburger-btn');
+const mobileMenu     = document.getElementById('mobile-menu');
+const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+function openMobileMenu()  { mobileMenu.classList.add('open');  document.body.style.overflow = 'hidden'; }
+function closeMobileMenu() { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; }
+
+hamburgerBtn.addEventListener('click', openMobileMenu);
+mobileMenuClose.addEventListener('click', closeMobileMenu);
+mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', () => closeMobileMenu());
+});
+
+// ── SMOOTH SCROLL LINKS ──
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const t = document.querySelector(link.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
